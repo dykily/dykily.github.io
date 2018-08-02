@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>使用vue构建自动建站 | Dykily Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="为什么会写这个项目最近在公司一直在做小程序的项目，在项目中就有一个使用组件构建小程序的功能，就类似以前的建站工具，这个功能是用比较传统的方式写的，使用JQ和JQ-UI的拖拽功能，相信大家也很熟悉这种组合方式，由于最近一直在学习vue，并且vue是数据驱动，就想用vue来写一下这个功能。刚开始的准备写的时候，想在网上找一个类似的demo研究研究，找了一圈发现，基本上什么也找不到太多开源，之前好不容易">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用vue构建自动建站">
+<meta property="og:url" content="http://yoursite.com/2018/04/07/my-blog/index.html">
+<meta property="og:site_name" content="Dykily Blog">
+<meta property="og:description" content="为什么会写这个项目最近在公司一直在做小程序的项目，在项目中就有一个使用组件构建小程序的功能，就类似以前的建站工具，这个功能是用比较传统的方式写的，使用JQ和JQ-UI的拖拽功能，相信大家也很熟悉这种组合方式，由于最近一直在学习vue，并且vue是数据驱动，就想用vue来写一下这个功能。刚开始的准备写的时候，想在网上找一个类似的demo研究研究，找了一圈发现，基本上什么也找不到太多开源，之前好不容易">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/22/1624e5fc2f4690b8?w=817&h=559&f=png&s=73907">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/23/1624e7363e3be7e5?w=804&h=900&f=png&s=61979">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/23/1624e753691402db?w=812&h=780&f=png&s=57703">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/23/1624e891a2a12899?w=806&h=867&f=png&s=96203">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/22/1624e65b4e1dbd2d?w=783&h=938&f=png&s=121545">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/22/1624e6ab9c7edb71?w=808&h=554&f=png&s=75263">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/23/1624e7ee3384e53e?w=958&h=705&f=png&s=105984">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/23/1624e8c3bd89430e?w=817&h=667&f=png&s=64201">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/23/1624e8cab91bf76a?w=931&h=928&f=png&s=125874">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/23/1624e8f5dd5ccb7d?w=973&h=532&f=png&s=75392">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/23/1624eabd6e481981?w=1226&h=807&f=gif&s=1908462">
+<meta property="og:updated_time" content="2018-08-02T03:50:51.590Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用vue构建自动建站">
+<meta name="twitter:description" content="为什么会写这个项目最近在公司一直在做小程序的项目，在项目中就有一个使用组件构建小程序的功能，就类似以前的建站工具，这个功能是用比较传统的方式写的，使用JQ和JQ-UI的拖拽功能，相信大家也很熟悉这种组合方式，由于最近一直在学习vue，并且vue是数据驱动，就想用vue来写一下这个功能。刚开始的准备写的时候，想在网上找一个类似的demo研究研究，找了一圈发现，基本上什么也找不到太多开源，之前好不容易">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/3/22/1624e5fc2f4690b8?w=817&h=559&f=png&s=73907">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/assets/img/a.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">冯观钦</h5>
+          <a href="mailto:250684079@qq.com" title="250684079@qq.com" class="mail">250684079@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/dykily" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用vue构建自动建站</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用vue构建自动建站</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-07T12:14:46.000Z" itemprop="datePublished" class="page-time">
+  2018-04-07
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为什么会写这个项目"><span class="post-toc-number">1.</span> <span class="post-toc-text">为什么会写这个项目</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#项目准备"><span class="post-toc-number">2.</span> <span class="post-toc-text">项目准备</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、vue-cli"><span class="post-toc-number">2.0.0.1.</span> <span class="post-toc-text">1、vue-cli</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、vuedraggable"><span class="post-toc-number">2.0.0.2.</span> <span class="post-toc-text">2、vuedraggable</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、sortablejs"><span class="post-toc-number">2.0.0.3.</span> <span class="post-toc-text">3、sortablejs</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、vuex"><span class="post-toc-number">2.0.0.4.</span> <span class="post-toc-text">4、vuex</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5、element-ui"><span class="post-toc-number">2.0.0.5.</span> <span class="post-toc-text">5、element-ui</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装过程"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、安装vue-cli并初始化一个vue项目"><span class="post-toc-number">3.0.0.1.</span> <span class="post-toc-text">1、安装vue-cli并初始化一个vue项目</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、安装项目所需要的包"><span class="post-toc-number">3.0.0.2.</span> <span class="post-toc-text">2、安装项目所需要的包</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、运行项目"><span class="post-toc-number">3.0.0.3.</span> <span class="post-toc-text">3、运行项目</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#主要代码"><span class="post-toc-number">4.</span> <span class="post-toc-text">主要代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、main-js"><span class="post-toc-number">4.0.1.</span> <span class="post-toc-text">1、main.js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、dragapi-js"><span class="post-toc-number">4.0.2.</span> <span class="post-toc-text">2、dragapi.js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、componentsData-js"><span class="post-toc-number">4.0.3.</span> <span class="post-toc-text">3、componentsData.js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4、vuex-js"><span class="post-toc-number">4.0.4.</span> <span class="post-toc-text">4、vuex.js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5、App-vue"><span class="post-toc-number">4.0.5.</span> <span class="post-toc-text">5、App.vue</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6、Sort-vue"><span class="post-toc-number">4.0.6.</span> <span class="post-toc-text">6、Sort.vue</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7、BaseEdit-vue"><span class="post-toc-number">4.0.7.</span> <span class="post-toc-text">7、BaseEdit.vue</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8、TextCp-vue"><span class="post-toc-number">4.0.8.</span> <span class="post-toc-text">8、TextCp.vue</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9、TextCpEdit-vue"><span class="post-toc-number">4.0.9.</span> <span class="post-toc-text">9、TextCpEdit.vue</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10、DeleteCp-vue"><span class="post-toc-number">4.0.10.</span> <span class="post-toc-text">10、DeleteCp.vue</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说一下编写组件的基本流程"><span class="post-toc-number">4.1.0.1.</span> <span class="post-toc-text">说一下编写组件的基本流程</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-my-blog"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用vue构建自动建站</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-07 20:14:46" datetime="2018-04-07T12:14:46.000Z"  itemprop="datePublished">2018-04-07</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="为什么会写这个项目"><a href="#为什么会写这个项目" class="headerlink" title="为什么会写这个项目"></a>为什么会写这个项目</h1><p>最近在公司一直在做小程序的项目，在项目中就有一个使用组件构建小程序的功能，就类似以前的建站工具，这个功能是用比较传统的方式写的，使用JQ和JQ-UI的拖拽功能，相信大家也很熟悉这种组合方式，由于最近一直在学习vue，并且vue是数据驱动，就想用vue来写一下这个功能。刚开始的准备写的时候，想在网上找一个类似的demo研究研究，找了一圈发现，基本上什么也找不到太多开源，之前好不容易找到一篇<a href="https://juejin.im/post/5a711724518825733201ebb1" target="_blank" rel="noopener">类似的文章</a>，作者也要做类似的功能，但是没有把代码开源出来，最后只能自己东平西凑的找资料，完成了项目的第一个测试版。</p>
+<h1 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h1><h4 id="1、vue-cli"><a href="#1、vue-cli" class="headerlink" title="1、vue-cli"></a>1、vue-cli</h4><h4 id="2、vuedraggable"><a href="#2、vuedraggable" class="headerlink" title="2、vuedraggable"></a>2、vuedraggable</h4><h4 id="3、sortablejs"><a href="#3、sortablejs" class="headerlink" title="3、sortablejs"></a>3、sortablejs</h4><h4 id="4、vuex"><a href="#4、vuex" class="headerlink" title="4、vuex"></a>4、vuex</h4><h4 id="5、element-ui"><a href="#5、element-ui" class="headerlink" title="5、element-ui"></a>5、element-ui</h4><blockquote>
+<p><strong>vue-cli</strong>是vue官方推荐的脚手架还很适合有vue基础的人使用。<br>在这个项目中由于用到了拖拽元素就为了方便就使用了<strong>vuedraggable</strong>，<strong>vuedraggable</strong>是基于<strong>sortablejs</strong>的封装所以也要引入。由于组件中会存在大量的数据所以为了数据的统一管理，这里就使用了<strong>vuex</strong>。<strong>element-ui</strong>这个我就不解释了，为了好看点就引入。</p>
+</blockquote>
+<h1 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h1><h4 id="1、安装vue-cli并初始化一个vue项目"><a href="#1、安装vue-cli并初始化一个vue项目" class="headerlink" title="1、安装vue-cli并初始化一个vue项目"></a>1、安装vue-cli并初始化一个vue项目</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --global vue-cli</span><br><span class="line">vue init webpack vuetest</span><br></pre></td></tr></table></figure>
+<h4 id="2、安装项目所需要的包"><a href="#2、安装项目所需要的包" class="headerlink" title="2、安装项目所需要的包"></a>2、安装项目所需要的包</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install vuedraggable</span><br><span class="line">npm install sortablejs</span><br><span class="line">npm install --save vuex</span><br><span class="line">npm install --save axios</span><br><span class="line">npm install element-ui</span><br></pre></td></tr></table></figure>
+<h4 id="3、运行项目"><a href="#3、运行项目" class="headerlink" title="3、运行项目"></a>3、运行项目</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<h1 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h1><blockquote>
+<p>完成上面这些操作就可以正式开始编写代码了</p>
+</blockquote>
+<h3 id="1、main-js"><a href="#1、main-js" class="headerlink" title="1、main.js"></a>1、main.js</h3><blockquote>
+<p>在main.js文件中基本上是引入了项目所需要的模块</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/3/22/1624e5fc2f4690b8?w=817&h=559&f=png&s=73907" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="2、dragapi-js"><a href="#2、dragapi-js" class="headerlink" title="2、dragapi.js"></a>2、dragapi.js</h3><blockquote>
+<p>dragapi.js左侧菜单栏的数据配置</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/3/23/1624e7363e3be7e5?w=804&h=900&f=png&s=61979" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="3、componentsData-js"><a href="#3、componentsData-js" class="headerlink" title="3、componentsData.js"></a>3、componentsData.js</h3><blockquote>
+<p>每个组件初始化的数据配置</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/3/23/1624e753691402db?w=812&h=780&f=png&s=57703" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="4、vuex-js"><a href="#4、vuex-js" class="headerlink" title="4、vuex.js"></a>4、vuex.js</h3><blockquote>
+<p>对数据的集中管理，每当组件的某个数据变化的时候都要同步到vuex</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/3/23/1624e891a2a12899?w=806&h=867&f=png&s=96203" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="5、App-vue"><a href="#5、App-vue" class="headerlink" title="5、App.vue"></a>5、App.vue</h3><blockquote>
+<p>在App.vue主要有三个自定义组件，draggable的拖拽组件，Sort元素排序组件，BaseEdit元素样式编辑组件</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/3/22/1624e65b4e1dbd2d?w=783&h=938&f=png&s=121545" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<blockquote>
+<p>draggable是vuedraggable的组件我就不多说了，下面我们来看一下Sort.vue文件是怎么样的</p>
+</blockquote>
+<h3 id="6、Sort-vue"><a href="#6、Sort-vue" class="headerlink" title="6、Sort.vue"></a>6、Sort.vue</h3><blockquote>
+<p>这个文件其实是挺好理解的就是显示组件视图，这里我们可以看到我们引入了Btn.vue、TextCp.vue这个两个组件，当拖拽组件到Sort的时候回显相应的组件视图。在Sort.vue也要引入vuex因为我们需要更新视图只要更新数据就可以了，这也是数据驱动的好处，不用再频繁的操作DOM。</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/3/22/1624e6ab9c7edb71?w=808&h=554&f=png&s=75263" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="7、BaseEdit-vue"><a href="#7、BaseEdit-vue" class="headerlink" title="7、BaseEdit.vue"></a>7、BaseEdit.vue</h3><blockquote>
+<p>这个就是编辑器组件，可以回显并编辑组件的数据。每个组件都会有一个自己单独的编辑器组件，本来想把编辑组件放到放到组件本身去会更好，可能会在下次更新github会封装在一起。</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/3/23/1624e7ee3384e53e?w=958&h=705&f=png&s=105984" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<blockquote>
+<p>接下来我们看看每个组件具体是怎么写的</p>
+</blockquote>
+<h3 id="8、TextCp-vue"><a href="#8、TextCp-vue" class="headerlink" title="8、TextCp.vue"></a>8、TextCp.vue</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/3/23/1624e8c3bd89430e?w=817&h=667&f=png&s=64201" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="9、TextCpEdit-vue"><a href="#9、TextCpEdit-vue" class="headerlink" title="9、TextCpEdit.vue"></a>9、TextCpEdit.vue</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/3/23/1624e8cab91bf76a?w=931&h=928&f=png&s=125874" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="10、DeleteCp-vue"><a href="#10、DeleteCp-vue" class="headerlink" title="10、DeleteCp.vue"></a>10、DeleteCp.vue</h3><blockquote>
+<p>这是对组件进行删除操作的删除组件</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/3/23/1624e8f5dd5ccb7d?w=973&h=532&f=png&s=75392" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h4 id="说一下编写组件的基本流程"><a href="#说一下编写组件的基本流程" class="headerlink" title="说一下编写组件的基本流程"></a>说一下编写组件的基本流程</h4><blockquote>
+<p>1、dragapi.js添加一项组件</p>
+<p>2、componentsData.js 添加组件创建时需要初始化的数据</p>
+<p>3、写xxx.vue组件（在Sort视图中显示）</p>
+<p>4、写xxxEdit.vue组件（组件的特有编辑器）</p>
+</blockquote>
+<blockquote>
+<p>看一下最终的效果</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/3/23/1624eabd6e481981?w=1226&h=807&f=gif&s=1908462" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<blockquote>
+<p>由于这是本人第一次写技术贴，有很多不足的地方，请大家谅解。如果有什么地方写得不明白可以到github下载源码研究一下，或者在下面评论或者提issues。</p>
+</blockquote>
+<blockquote>
+<p>最后把源码附上 <a href="https://github.com/dykily/dragWidget" target="_blank" rel="noopener">源码地址</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/dykily/dragWidget" target="_blank" rel="noopener">https://github.com/dykily/dragWidget</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-08-02T03:50:51.590Z" itemprop="dateUpdated">2018-08-02 11:50:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/04/07/my-blog/" target="_blank" rel="external">http://yoursite.com/2018/04/07/my-blog/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/assets/img/a.jpg" alt="冯观钦">
+            冯观钦
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/07/my-blog/&title=《使用vue构建自动建站》 — Dykily Blog&pic=http://yoursite.com/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/07/my-blog/&title=《使用vue构建自动建站》 — Dykily Blog&source=2017年毕业 软件工程专业" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/07/my-blog/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用vue构建自动建站》 — Dykily Blog&url=http://yoursite.com/2018/04/07/my-blog/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/07/my-blog/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/08/02/git-note/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">git简单命令</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>冯观钦 &copy; 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/07/my-blog/&title=《使用vue构建自动建站》 — Dykily Blog&pic=http://yoursite.com/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/07/my-blog/&title=《使用vue构建自动建站》 — Dykily Blog&source=2017年毕业 软件工程专业" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/04/07/my-blog/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用vue构建自动建站》 — Dykily Blog&url=http://yoursite.com/2018/04/07/my-blog/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/04/07/my-blog/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/04/07/my-blog/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
