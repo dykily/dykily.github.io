@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>css笔记 | Dykily Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="CSS 对象CSS 对象概述OO CSS将页面可重用元素抽象成一个类，用class描述，而与其对应的html可看成此类的实例 OO CSS的作用和注意事项1.不要直接定义子节点，应把共性声明放到父类。 12.mod .inner&amp;#123;……&amp;#125;       // good 抽象共性.inner&amp;#123;……&amp;#125;            // bad 2.结构和皮肤相分离。 12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css笔记">
+<meta property="og:url" content="/2018/08/05/css-note/index.html">
+<meta property="og:site_name" content="Dykily Blog">
+<meta property="og:description" content="CSS 对象CSS 对象概述OO CSS将页面可重用元素抽象成一个类，用class描述，而与其对应的html可看成此类的实例 OO CSS的作用和注意事项1.不要直接定义子节点，应把共性声明放到父类。 12.mod .inner&amp;#123;……&amp;#125;       // good 抽象共性.inner&amp;#123;……&amp;#125;            // bad 2.结构和皮肤相分离。 12">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="/assets/img/article/cssnote/smacssdemo.png">
+<meta property="og:image" content="/assets/img/article/cssnote/bem.png">
+<meta property="og:image" content="/assets/img/article/cssnote/suit.png">
+<meta property="og:image" content="/assets/img/article/cssnote/acss.png">
+<meta property="og:image" content="/assets/img/article/cssnote/itcss.jpg">
+<meta property="og:updated_time" content="2018-08-05T11:59:39.954Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css笔记">
+<meta name="twitter:description" content="CSS 对象CSS 对象概述OO CSS将页面可重用元素抽象成一个类，用class描述，而与其对应的html可看成此类的实例 OO CSS的作用和注意事项1.不要直接定义子节点，应把共性声明放到父类。 12.mod .inner&amp;#123;……&amp;#125;       // good 抽象共性.inner&amp;#123;……&amp;#125;            // bad 2.结构和皮肤相分离。 12">
+<meta name="twitter:image" content="/assets/img/article/cssnote/smacssdemo.png">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/assets/img/a.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">冯观钦</h5>
+          <a href="mailto:250684079@qq.com" title="250684079@qq.com" class="mail">250684079@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/dykily" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">css笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">css笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-05T10:16:24.000Z" itemprop="datePublished" class="page-time">
+  2018-08-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CSS-对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">CSS 对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#CSS-对象概述"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">CSS 对象概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#OO-CSS的作用和注意事项"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">OO CSS的作用和注意事项</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CSS-分层"><span class="post-toc-number">2.</span> <span class="post-toc-text">CSS 分层</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#SMACSS"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">SMACSS</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#BEM"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">BEM</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#SUIT"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">SUIT</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ACSS"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">ACSS</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ITCSS"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">ITCSS</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-css-note"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">css笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-05 18:16:24" datetime="2018-08-05T10:16:24.000Z"  itemprop="datePublished">2018-08-05</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="CSS-对象"><a href="#CSS-对象" class="headerlink" title="CSS 对象"></a>CSS 对象</h3><h4 id="CSS-对象概述"><a href="#CSS-对象概述" class="headerlink" title="CSS 对象概述"></a>CSS 对象概述</h4><p>OO CSS将页面可重用元素抽象成一个类，用class描述，而与其对应的html可看成此类的实例</p>
+<h4 id="OO-CSS的作用和注意事项"><a href="#OO-CSS的作用和注意事项" class="headerlink" title="OO CSS的作用和注意事项"></a>OO CSS的作用和注意事项</h4><p>1.不要直接定义子节点，应把共性声明放到父类。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.mod .inner&#123;……&#125;       // good 抽象共性</span><br><span class="line">.inner&#123;……&#125;            // bad</span><br></pre></td></tr></table></figure>
+</code></pre><p>2.结构和皮肤相分离。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container simpleExt&quot;&gt;&lt;/div&gt;   //html 结构</span><br><span class="line">.container &#123;……&#125;    //控制结构的class</span><br><span class="line">.simpleExt&#123;……&#125;      //控制皮肤的class</span><br></pre></td></tr></table></figure>
+</code></pre><p>3.容器和内容相分离。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;&lt;ul&gt;&lt;li&gt;排行&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;   //html 结构</span><br><span class="line">.container ul&#123;……&#125;    //ul依赖了容器</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;ul class=&quot;rankList &quot;&gt;</span><br><span class="line">        &lt;li&gt;排行&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;   </span><br><span class="line">.rankList ul&#123;……&#125;    //解除与容器的依赖，可以从一个容器转移到其他容器</span><br></pre></td></tr></table></figure>
+</code></pre><p>4.抽象出可重用的元素，建好组件库，在组件库内寻找可用的元素组装页面。<br>5.往你想要扩展的对象本身增加class而不是他的父节点。<br>6.对象应保持独立性。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;&lt;div class=&quot;mod&quot;&gt;&lt;/div&gt;&lt;/div&gt; //html 结构</span><br><span class="line">.container &#123;……&#125; .container .mod&#123;……&#125; //控制结构的class</span><br><span class="line">&lt;div class=&quot;container mod&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>7.避免使用ID选择器，权重太高，无法重用。<br>8.避免位置相关的样式。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#header .container &#123;……&#125;, #footer .container&#123;……&#125; </span><br><span class="line">.container&#123;&#125; #header h1 &#123;……&#125;, #footer h1 &#123;……&#125; </span><br><span class="line">h1,.h1&#123;&#125;    h2,.h2&#123;&#125;   &lt;h1&gt;&lt;class=&quot;h6&quot;&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p>9.保证选择器相同的权重。<br>10.类名 简短 清晰 语义化 OOCSS的名字并不影响HTML语义化。</p>
+<h3 id="CSS-分层"><a href="#CSS-分层" class="headerlink" title="CSS 分层"></a>CSS 分层</h3><p>分层是为了可扩展性，性能的提高和代码的组织管理</p>
+<h4 id="SMACSS"><a href="#SMACSS" class="headerlink" title="SMACSS"></a>SMACSS</h4><p>SMACSS(Scalable and Modular Architecture for CSS 可扩展的模块化架构的CSS)<br>像OOCSS一样以减少重复样式为基础。<br>然而SMACSS使用一套五个层次来划分CSS给项目带来更结构化的方法：<br>Base -设定标签元素的预设值  PS:html {} input[type=text] {}<br>Layout -整个网站的「大架构」的外观  PS:#header { margin: 30px 0; }<br>Module -应用在不同页面公共模块 PS:.button{}<br>State -定义元素不同的状态 PS:.nav–main {  .active {} }<br>Theme - 画面上所有「主视觉」的定义 PS: border-color、background-image<br>修饰符使用的是–，子模块使用__符号。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/cssnote/smacssdemo.png" alt="SMACSS" title="图1&nbsp;SMACSS">
+                </div>
+                <div class="image-caption">图1&nbsp;SMACSS</div>
+            </figure></p>
+<h4 id="BEM"><a href="#BEM" class="headerlink" title="BEM"></a>BEM</h4><p>BEM和SMACCS非常类似，主要用来如何给项目命名。<br>一个简单命名更容易让别人一起工作。<br>比如选项卡导航是一个块(Block)，这个块里的元素的是其中标签之一(Element)，<br>而当前选项卡是一个修饰状态(Modifier)：<br>block -代表了更高级别的抽象或组件<br>block__element -代表.block的后代，用于形成一个完整的.block的整体。<br>.block–modifier -代表.block的不同状态或不同版本。<br>修饰符使用的是_，子模块使用–符号。(不用一个-的原因是CSS单词连接)<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/cssnote/bem.png" alt="BEM" title="图2&nbsp;BEM">
+                </div>
+                <div class="image-caption">图2&nbsp;BEM</div>
+            </figure></p>
+<h4 id="SUIT"><a href="#SUIT" class="headerlink" title="SUIT"></a>SUIT</h4><p>Suit起源于BEM，但是它对组件名使用驼峰式和连字号把组件从他们的修饰和子孙后代中区分出来：<br>修饰符使用的是—，子模块使用–符号。(不用一个-的原因是CSS单词连接)<br>如果你不想使用如此严格或者复杂的命名规则，给每一个选择器加前缀同样可以达到这样的效果。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.s-product-details &#123;&#125;</span><br><span class="line">.t-product-details &#123;&#125;</span><br><span class="line">.js-product-details &#123;&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>结构属性将会被应用到s-product-details选择器中。<br>主题属性将应用于t-product-details选择器。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/cssnote/suit.png" alt="SUIT" title="图3&nbsp;SUIT">
+                </div>
+                <div class="image-caption">图3&nbsp;SUIT</div>
+            </figure></p>
+<h4 id="ACSS"><a href="#ACSS" class="headerlink" title="ACSS"></a>ACSS</h4><p>原子css，相当于把各个属性拆成一个个class<br>考虑如何设计一个系统的接口。原子(Atoms)是创建一个区块的最基本的特质，<br>比如说表单按钮。分子(Molecules)是很多个原子(Atoms)的组合，<br>比如说一个表单中包括了一个标签，输入框和按钮。<br>生物(Organisms)是众多分子(Molecules)的组合物，比如一个网站的顶部区域，<br>他包括了网站的标题、导航等。而模板(Templates)又是众多生物(Organisms)的结合体。<br>比如一个网站页面的布局。而最后的页面就是特殊的模板。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/cssnote/acss.png" alt="ACSS" title="图3&nbsp;ACSS">
+                </div>
+                <div class="image-caption">图3&nbsp;ACSS</div>
+            </figure></p>
+<h4 id="ITCSS"><a href="#ITCSS" class="headerlink" title="ITCSS"></a>ITCSS</h4><p>ITCSS——“倒三角形CSS”是一种新的方法论。它将整个CSS项目想象成一个分层的、倒置的三角形。这个分层图形表示了一个能帮你以最有效、最节约的方式组织CSS的模型。<br>在ITCSS中，每一层都是上一层的逻辑递进。它变得更加明确、有目的性，并缩小了选择器的使用范围。由于我们写CSS是在之前的基础上添加，这意外着我们的CSS本质上更容易扩展。我们不必浪费时间撤销或重写以前的CSS。<br>这也意味着，每个元素，以及每一种类型的元素，都有它自己的一致、可预测的地方。这使得查找和添加样式要简单得多。 ITCSS，默认情况下，有以下7层。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/cssnote/itcss.jpg" alt="ITCSS" title="图4&nbsp;ITCSS">
+                </div>
+                <div class="image-caption">图4&nbsp;ITCSS</div>
+            </figure></p>
+<p>1.Settings — 该层包含了项目中的所有全局设置（如基本字体大小、颜色调色板、配置等）。<br><code>$color-ui: #BADA55; $spacing-unit:10px</code><br>2.Tools — 该层包含了全局可用的工具–即混入和函数。全局工具的例子有梯度混入、字体大小混入等。<br><code>@mixin font-color() {font-color: $color-ui;}</code><br>3.Generic — 该层是第一个实际产生CSS的层。它很少改动，并且通常在不同项目中保持不变。它包括像Normalize. css、全局盒子大小规则、CSS重置等。<br><code>Normalize, resets, box-sizing: border-box;</code><br>4.Base — 该层只包含没有样式的html元素选择器。<br><code>ul {list-style: square outside;}</code><br>5.Objects — 该层是第一个包含了基于类的选择器的层。<br><code>.ui-list__item {padding: $spacing-unit;}</code><br>6.Components — 设计符合你们的组件,该层开始设计有可识别性的DOM元素。<br><code>.products-list {@include font-brand();border-top: 1px solid $color-ui;}</code><br>7.Trumps — 重写，只影响一块的DOM。该层是具有最高特异性的层，可以覆盖之前的样式。该层大部分声明都带有!important 。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-05T11:59:39.954Z" itemprop="dateUpdated">2018-08-05 19:59:39</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/assets/img/a.jpg" alt="冯观钦">
+            冯观钦
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/05/css-note/&title=《css笔记》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/05/css-note/&title=《css笔记》 — Dykily Blog&source=web" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/05/css-note/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css笔记》 — Dykily Blog&url=/2018/08/05/css-note/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2018/08/05/css-note/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/02/git-note/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">git简单命令</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>冯观钦 &copy; 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/05/css-note/&title=《css笔记》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/05/css-note/&title=《css笔记》 — Dykily Blog&source=web" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/05/css-note/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css笔记》 — Dykily Blog&url=/2018/08/05/css-note/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2018/08/05/css-note/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=/2018/08/05/css-note/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
