@@ -28,7 +28,7 @@
 <meta property="og:description" content="IE6经典BUG1.IE6怪异解析之padding与border算入宽高原因：未加文档声明造成非盒模型解析解决方法：加入文档声明 &amp;lt;!doctype html&amp;gt;2.IE6在块元素、左右浮动、设定marin时造成margin双倍（双边距）解决方法：display:inline3.以下三种其实是同一种bug，其实也不算是个bug，举个例子：父标签高度20，子标签11，垂直居中，20-11=">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="/assets/img/article/cssnote/shadow.jpg">
-<meta property="og:updated_time" content="2018-08-06T01:41:59.265Z">
+<meta property="og:updated_time" content="2018-08-06T01:47:16.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css笔记 -- IE，PX、REM，HINT，盒子">
 <meta name="twitter:description" content="IE6经典BUG1.IE6怪异解析之padding与border算入宽高原因：未加文档声明造成非盒模型解析解决方法：加入文档声明 &amp;lt;!doctype html&amp;gt;2.IE6在块元素、左右浮动、设定marin时造成margin双倍（双边距）解决方法：display:inline3.以下三种其实是同一种bug，其实也不算是个bug，举个例子：父标签高度20，子标签11，垂直居中，20-11=">
@@ -124,7 +124,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -163,7 +163,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IE6经典BUG"><span class="post-toc-number">1.</span> <span class="post-toc-text">IE6经典BUG</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于移动端的PX与REM"><span class="post-toc-number">2.</span> <span class="post-toc-text">基于移动端的PX与REM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CSS-HINT"><span class="post-toc-number">3.</span> <span class="post-toc-text">CSS HINT</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CSS绘制高级技巧"><span class="post-toc-number">4.</span> <span class="post-toc-text">CSS绘制高级技巧</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BFC-IFC-GFC-FFC"><span class="post-toc-number">5.</span> <span class="post-toc-text">BFC IFC GFC FFC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#BFC"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">BFC</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IFC"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">IFC</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#FFC"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">FFC</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#GFC"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">GFC</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IE6经典BUG"><span class="post-toc-number">1.</span> <span class="post-toc-text">IE6经典BUG</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于移动端的PX与REM"><span class="post-toc-number">2.</span> <span class="post-toc-text">基于移动端的PX与REM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CSS-HINT"><span class="post-toc-number">3.</span> <span class="post-toc-text">CSS HINT</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CSS绘制高级技巧"><span class="post-toc-number">4.</span> <span class="post-toc-text">CSS绘制高级技巧</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#盒子-BFCIFC-GFC-FFC"><span class="post-toc-number">5.</span> <span class="post-toc-text">盒子 BFCIFC GFC FFC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#BFC"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">BFC</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IFC"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">IFC</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#FFC"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">FFC</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#GFC"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">GFC</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -192,7 +192,7 @@
                 </div>
                 <div class="image-caption">图1 shadow</div>
             </figure></p>
-<h3 id="BFC-IFC-GFC-FFC"><a href="#BFC-IFC-GFC-FFC" class="headerlink" title="BFC IFC GFC FFC"></a>BFC IFC GFC FFC</h3><p>Box: CSS布局的基本单位Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。<br>Formatting context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。</p>
+<h3 id="盒子-BFCIFC-GFC-FFC"><a href="#盒子-BFCIFC-GFC-FFC" class="headerlink" title="盒子 BFCIFC GFC FFC"></a>盒子 BFCIFC GFC FFC</h3><p>Box: CSS布局的基本单位Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。<br>Formatting context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。</p>
 <h4 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h4><p>block-level box:display 属性为 <code>block</code>, <code>list-item</code>, <code>table</code> 的元素，会生成 block-level box。并且参与 block fomatting context；</p>
 <p>哪些元素会生成BFC?<br>1.根元素<br>2.<code>float</code>属性不为<code>none</code><br>3.<code>position</code>为<code>absolute</code>或<code>fixed</code><br>4.<code>display</code>为<code>inline-block,</code> <code>table-cell</code>, <code>table-caption,</code> <code>flex</code>,<code>inline-flex</code><br>5.<code>overflow</code>不为<code>visible</code></p>
 <h4 id="IFC"><a href="#IFC" class="headerlink" title="IFC"></a>IFC</h4><p>inline-level box:display 属性为 <code>inline</code>, <code>inline-block</code>, <code>inline-table</code> 的元素，会生成 inline-level box。并且参与 inline formatting context；<br>IFC(Inline Formatting Contexts)直译为”内联格式化上下文”，IFC的line box（线框）高度由其包含行内元素中最高的实际高度计算而来（不受到竖直方向的padding/margin影响)</p>
@@ -205,7 +205,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-08-06T01:41:59.265Z" itemprop="dateUpdated">2018-08-06 09:41:59</time>
+    Last updated: <time datetime="2018-08-06T01:47:16.977Z" itemprop="dateUpdated">2018-08-06 09:47:16</time>
 </span><br>
 
 
@@ -319,7 +319,7 @@
 
         <p>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
