@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Dykily Blog">
 <meta property="og:description" content="作用域理解作用域1.引擎 从头到尾负责整个 JavaScript 程序的编译及执行过程2.编译器 引擎的好朋友之一，负责语法分析及代码生成等脏活累活3.作用域 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限 分析 var a = 2;引擎会做些什么引擎会把 var a = 2 分解  遇到 var">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-14T01:12:48.999Z">
+<meta property="og:updated_time" content="2018-08-14T01:22:04.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我不知道的js-作用域">
 <meta name="twitter:description" content="作用域理解作用域1.引擎 从头到尾负责整个 JavaScript 程序的编译及执行过程2.编译器 引擎的好朋友之一，负责语法分析及代码生成等脏活累活3.作用域 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限 分析 var a = 2;引擎会做些什么引擎会把 var a = 2 分解  遇到 var">
@@ -194,7 +194,7 @@
 <p>如果引擎最终找到了 a 变量，就会将 2 赋值给它。否则引擎就会举手示意并抛出一个 异常!</p>
 <p>总结:变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量(如 果之前没有声明过)，然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对 它赋值。</p>
 <h4 id="编译器有话说"><a href="#编译器有话说" class="headerlink" title="编译器有话说"></a>编译器有话说</h4><p>编译器在上面第二步中生成了代码，引擎执行它时，会通过查找变量 a 来判断它是 否已声明过。<br>查找的过程由作用域进行协助，但引擎执行怎样的查找，会影响最终的查找结果<br>例子中，引擎会为变量 a 进行 LHS 查询。另外一个查找的类型叫作 RHS。<br>当变量出现在赋值操作的左侧时进行 <em>LHS 查询</em>，出现在右侧时进行 <em>RHS 查询</em><br>LHS 和 RHS 的含义是“赋值操作的左侧或右侧”并不一定意味着就是 <em>“= 赋值操作符的左侧或右侧”</em> 。<br>赋值操作还有其他几种形式，因此在概念上最 好将其理解为“赋值操作的目标是谁(LHS)”以及“谁是赋值操作的源头(RHS)”</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>作用域是一套规则，用于确定在何处以及如何查找变量(标识符)。如果查找的目的是对<br>变量进行赋值，就会使用 LHS 查询;如果目的是获取变量的值，就会使用 RHS 查询。<br>不成功的 RHS 引用会导致抛出 ReferenceError 异常。不成功的 LHS 引用会导致自动隐式 地创建一个全局变量(非严格模式下)，该变量使用 LHS 引用的目标作为标识符，或者抛 出 ReferenceError 异常(严格模式下)。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>作用域是一套规则，用于确定在何处以及如何查找变量(标识符)。如果查找的目的是对<br>变量进行赋值，就会使用 LHS 查询;如果目的是获取变量的值，就会使用 RHS 查询。<br>不成功的 RHS 引用会导致<em>抛出ReferenceError异常</em>。不成功的LHS引用会导致<em>自动隐式地创建一个全局变量(非严格模式下)</em>，该变量使用LHS引用的目标作为标识符，或者<em>抛出ReferenceError 异常(严格模式下)</em>。</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://book.douban.com/subject/26351021/" target="_blank" rel="noopener">你不知道的js</a></p>
 
         </div>
@@ -203,7 +203,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-08-14T01:12:48.999Z" itemprop="dateUpdated">2018-08-14 09:12:48</time>
+    Last updated: <time datetime="2018-08-14T01:22:04.072Z" itemprop="dateUpdated">2018-08-14 09:22:04</time>
 </span><br>
 
 
