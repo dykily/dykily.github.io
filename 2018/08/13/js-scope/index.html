@@ -13,24 +13,24 @@
     
     
     
-    <title>我不知道是js-作用域 | Dykily Blog</title>
+    <title>我不知道的js-作用域 | Dykily Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="理解作用域1.引擎 从头到尾负责整个 JavaScript 程序的编译及执行过程2.编译器 引擎的好朋友之一，负责语法分析及代码生成等脏活累活3.作用域 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限 分析 var a = 2;引擎会做些什么引擎会把 var a = 2 分解  遇到 var a，编">
+    <meta name="description" content="作用域理解作用域1.引擎 从头到尾负责整个 JavaScript 程序的编译及执行过程2.编译器 引擎的好朋友之一，负责语法分析及代码生成等脏活累活3.作用域 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限 分析 var a = 2;引擎会做些什么引擎会把 var a = 2 分解  遇到 var">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我不知道是js-作用域">
+<meta property="og:title" content="我不知道的js-作用域">
 <meta property="og:url" content="/2018/08/13/js-scope/index.html">
 <meta property="og:site_name" content="Dykily Blog">
-<meta property="og:description" content="理解作用域1.引擎 从头到尾负责整个 JavaScript 程序的编译及执行过程2.编译器 引擎的好朋友之一，负责语法分析及代码生成等脏活累活3.作用域 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限 分析 var a = 2;引擎会做些什么引擎会把 var a = 2 分解  遇到 var a，编">
+<meta property="og:description" content="作用域理解作用域1.引擎 从头到尾负责整个 JavaScript 程序的编译及执行过程2.编译器 引擎的好朋友之一，负责语法分析及代码生成等脏活累活3.作用域 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限 分析 var a = 2;引擎会做些什么引擎会把 var a = 2 分解  遇到 var">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-13T01:21:10.111Z">
+<meta property="og:updated_time" content="2018-08-14T00:55:07.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我不知道是js-作用域">
-<meta name="twitter:description" content="理解作用域1.引擎 从头到尾负责整个 JavaScript 程序的编译及执行过程2.编译器 引擎的好朋友之一，负责语法分析及代码生成等脏活累活3.作用域 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限 分析 var a = 2;引擎会做些什么引擎会把 var a = 2 分解  遇到 var a，编">
+<meta name="twitter:title" content="我不知道的js-作用域">
+<meta name="twitter:description" content="作用域理解作用域1.引擎 从头到尾负责整个 JavaScript 程序的编译及执行过程2.编译器 引擎的好朋友之一，负责语法分析及代码生成等脏活累活3.作用域 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限 分析 var a = 2;引擎会做些什么引擎会把 var a = 2 分解  遇到 var">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -116,7 +116,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">我不知道是js-作用域</div>
+        <div class="flex-col header-title ellipsis">我不知道的js-作用域</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -138,7 +138,7 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">我不知道是js-作用域</h1>
+        <h1 class="title">我不知道的js-作用域</h1>
         <h5 class="subtitle">
             
                 <time datetime="2018-08-13T01:13:06.000Z" itemprop="datePublished" class="page-time">
@@ -161,7 +161,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#理解作用域"><span class="post-toc-number">1.</span> <span class="post-toc-text">理解作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-var-a-2"><span class="post-toc-number">2.</span> <span class="post-toc-text">分析 var a = 2;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#引擎会做些什么"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">引擎会做些什么</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#作用域"><span class="post-toc-number">1.</span> <span class="post-toc-text">作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#理解作用域"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">理解作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-var-a-2"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">分析 var a = 2;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#引擎会做些什么"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">引擎会做些什么</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#编译器有话说"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">编译器有话说</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小结"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">小结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">2.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
         </nav>
     </aside>
     
@@ -169,7 +169,7 @@
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">我不知道是js-作用域</h1>
+        <h1 class="post-card-title">我不知道的js-作用域</h1>
         <div class="post-meta">
             <time class="post-time" title="2018-08-13 09:13:06" datetime="2018-08-13T01:13:06.000Z"  itemprop="datePublished">2018-08-13</time>
 
@@ -180,12 +180,17 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h3 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h3><p>1.<code>引擎</code> 从头到尾负责整个 JavaScript 程序的编译及执行过程<br>2.<code>编译器</code> 引擎的好朋友之一，负责语法分析及代码生成等脏活累活<br>3.<code>作用域</code> 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限</p>
+            <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h3 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h3><p>1.<code>引擎</code> 从头到尾负责整个 JavaScript 程序的编译及执行过程<br>2.<code>编译器</code> 引擎的好朋友之一，负责语法分析及代码生成等脏活累活<br>3.<code>作用域</code> 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限</p>
 <h3 id="分析-var-a-2"><a href="#分析-var-a-2" class="headerlink" title="分析 var a = 2;"></a>分析 <code>var a = 2;</code></h3><h4 id="引擎会做些什么"><a href="#引擎会做些什么" class="headerlink" title="引擎会做些什么"></a>引擎会做些什么</h4><p>引擎会把 <code>var a = 2</code> 分解</p>
 <ol>
 <li>遇到 var a，编译器会询问作用域是否已经有一个该名称的变量存在于同一个作用域的 集合中。如果是，编译器会忽略该声明，继续进行编译;否则它会要求作用域在当前作 用域的集合中声明一个新的变量，并命名为 a。</li>
-<li>接下来编译器会为引擎生成运行时所需的代码，这些代码被用来处理 a = 2 这个赋值 操作。引擎运行时会首先询问作用域，在当前的作用域集合中是否存在一个叫作 a 的 变量。如果是，引擎就会使用这个变量;如果否，引擎会继续查找该变量。<br>如果引擎最终找到了 a 变量，就会将 2 赋值给它。否则引擎就会举手示意并抛出一个 异常!<br>总结:变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量(如 果之前没有声明过)，然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对 它赋值。</li>
+<li>接下来编译器会为引擎生成运行时所需的代码，这些代码被用来处理 a = 2 这个赋值 操作。引擎运行时会首先询问作用域，在当前的作用域集合中是否存在一个叫作 a 的 变量。如果是，引擎就会使用这个变量;如果否，引擎会继续查找该变量。</li>
 </ol>
+<p>如果引擎最终找到了 a 变量，就会将 2 赋值给它。否则引擎就会举手示意并抛出一个 异常!</p>
+<p>总结:变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量(如 果之前没有声明过)，然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对 它赋值。</p>
+<h4 id="编译器有话说"><a href="#编译器有话说" class="headerlink" title="编译器有话说"></a>编译器有话说</h4><p>编译器在上面第二步中生成了代码，引擎执行它时，会通过查找变量 a 来判断它是 否已声明过。<br>查找的过程由作用域进行协助，但引擎执行怎样的查找，会影响最终的查找结果<br>例子中，引擎会为变量 a 进行 LHS 查询。另外一个查找的类型叫作 RHS。<br>当变量出现在赋值操作的左侧时进行 <em>LHS 查询</em>，出现在右侧时进行 <em>RHS 查询</em><br>LHS 和 RHS 的含义是“赋值操作的左侧或右侧”并不一定意味着就是 <em>“= 赋值操作符的左侧或右侧”</em> 。<br>赋值操作还有其他几种形式，因此在概念上最 好将其理解为“赋值操作的目标是谁(LHS)”以及“谁是赋值操作的源头(RHS)”</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>作用域是一套规则，用于确定在何处以及如何查找变量(标识符)。如果查找的目的是对<br>变量进行赋值，就会使用 LHS 查询;如果目的是获取变量的值，就会使用 RHS 查询。<br>不成功的 RHS 引用会导致抛出 ReferenceError 异常。不成功的 LHS 引用会导致自动隐式 地创建一个全局变量(非严格模式下)，该变量使用 LHS 引用的目标作为标识符，或者抛 出 ReferenceError 异常(严格模式下)。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://book.douban.com/subject/26351021/" target="_blank" rel="noopener">你不知道的js</a></p>
 
         </div>
 
@@ -193,7 +198,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-08-13T01:21:10.111Z" itemprop="dateUpdated">2018-08-13 09:21:10</time>
+    最后更新时间：<time datetime="2018-08-14T00:55:07.064Z" itemprop="dateUpdated">2018-08-14 08:55:07</time>
 </span><br>
 
 
@@ -220,7 +225,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/13/js-scope/&title=《我不知道是js-作用域》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/13/js-scope/&title=《我不知道的js-作用域》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -230,7 +235,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/13/js-scope/&title=《我不知道是js-作用域》 — Dykily Blog&source=web" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/13/js-scope/&title=《我不知道的js-作用域》 — Dykily Blog&source=web" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -240,7 +245,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我不知道是js-作用域》 — Dykily Blog&url=/2018/08/13/js-scope/&via=" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我不知道的js-作用域》 — Dykily Blog&url=/2018/08/13/js-scope/&via=" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -329,7 +334,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/13/js-scope/&title=《我不知道是js-作用域》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/13/js-scope/&title=《我不知道的js-作用域》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -339,7 +344,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/13/js-scope/&title=《我不知道是js-作用域》 — Dykily Blog&source=web" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/13/js-scope/&title=《我不知道的js-作用域》 — Dykily Blog&source=web" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -349,7 +354,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我不知道是js-作用域》 — Dykily Blog&url=/2018/08/13/js-scope/&via=" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我不知道的js-作用域》 — Dykily Blog&url=/2018/08/13/js-scope/&via=" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
