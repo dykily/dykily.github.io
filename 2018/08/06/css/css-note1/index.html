@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>css笔记 -- IE，PX、REM，HINT，盒子 | Dykily Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="css">
+    <meta name="description" content="IE6经典BUG1.IE6怪异解析之padding与border算入宽高原因：未加文档声明造成非盒模型解析解决方法：加入文档声明 &amp;lt;!doctype html&amp;gt;2.IE6在块元素、左右浮动、设定marin时造成margin双倍（双边距）解决方法：display:inline3.以下三种其实是同一种bug，其实也不算是个bug，举个例子：父标签高度20，子标签11，垂直居中，20-11=">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css笔记 -- IE，PX、REM，HINT，盒子">
+<meta property="og:url" content="/2018/08/06/css/css-note1/index.html">
+<meta property="og:site_name" content="Dykily Blog">
+<meta property="og:description" content="IE6经典BUG1.IE6怪异解析之padding与border算入宽高原因：未加文档声明造成非盒模型解析解决方法：加入文档声明 &amp;lt;!doctype html&amp;gt;2.IE6在块元素、左右浮动、设定marin时造成margin双倍（双边距）解决方法：display:inline3.以下三种其实是同一种bug，其实也不算是个bug，举个例子：父标签高度20，子标签11，垂直居中，20-11=">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="/assets/img/article/cssnote/shadow.jpg">
+<meta property="og:updated_time" content="2018-08-14T01:13:16.072Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css笔记 -- IE，PX、REM，HINT，盒子">
+<meta name="twitter:description" content="IE6经典BUG1.IE6怪异解析之padding与border算入宽高原因：未加文档声明造成非盒模型解析解决方法：加入文档声明 &amp;lt;!doctype html&amp;gt;2.IE6在块元素、左右浮动、设定marin时造成margin双倍（双边距）解决方法：display:inline3.以下三种其实是同一种bug，其实也不算是个bug，举个例子：父标签高度20，子标签11，垂直居中，20-11=">
+<meta name="twitter:image" content="/assets/img/article/cssnote/shadow.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/assets/img/a.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">冯观钦</h5>
+          <a href="mailto:250684079@qq.com" title="250684079@qq.com" class="mail">250684079@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/dykily" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">css笔记 -- IE，PX、REM，HINT，盒子</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">css笔记 -- IE，PX、REM，HINT，盒子</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-06T01:09:22.000Z" itemprop="datePublished" class="page-time">
+  2018-08-06
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/css/">css</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IE6经典BUG"><span class="post-toc-number">1.</span> <span class="post-toc-text">IE6经典BUG</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于移动端的PX与REM"><span class="post-toc-number">2.</span> <span class="post-toc-text">基于移动端的PX与REM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CSS-HINT"><span class="post-toc-number">3.</span> <span class="post-toc-text">CSS HINT</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CSS绘制高级技巧"><span class="post-toc-number">4.</span> <span class="post-toc-text">CSS绘制高级技巧</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#盒子-BFCIFC-GFC-FFC"><span class="post-toc-number">5.</span> <span class="post-toc-text">盒子 BFCIFC GFC FFC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#BFC"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">BFC</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IFC"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">IFC</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#FFC"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">FFC</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#GFC"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">GFC</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-css/css-note1"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">css笔记 -- IE，PX、REM，HINT，盒子</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-06 09:09:22" datetime="2018-08-06T01:09:22.000Z"  itemprop="datePublished">2018-08-06</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/css/">css</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="IE6经典BUG"><a href="#IE6经典BUG" class="headerlink" title="IE6经典BUG"></a>IE6经典BUG</h3><p>1.IE6怪异解析之padding与border算入宽高<br>原因：未加文档声明造成非盒模型解析<br>解决方法：加入文档声明 <code>&lt;!doctype html&gt;</code><br>2.IE6在块元素、左右浮动、设定marin时造成margin双倍（双边距）<br>解决方法：<code>display:inline</code><br>3.以下三种其实是同一种bug，其实也不算是个bug，举个例子：父标签高度20，子标签11，垂直居中，20-11=9，9要分给文字的上面与下面，怎么分？IE6就会与其它的不同，所以，尽量避免。<br>1）字体大小为奇数之边框高度少1px<br>解决方法：字体大小设置为偶数或<code>line-height</code>为偶数<br>2）<code>line-height</code>，文本垂直居中差1px<br>解决方法：<code>padding-top</code>代替<code>line-height</code>居中，或<code>line-height</code>加1或减1<br>3）与父标签的宽度的奇偶不同的居中造成1px的偏离<br>解决方法：如果父标签是奇数宽度，则子标签也用奇数宽度;如果是父标签偶数宽度，则子标签也用偶数宽度<br>4.内部盒模型超出父级时，父级被撑大<br>解决方法：父标签使用<code>overflow:hidden</code><br>5.line-height默认行高bug<br>解决方法：<code>line-height</code>设值<br>6.行标签之间会有一小段空白<br>解决方法：<code>float</code>或结构并排(可读性差，不建议)<br>7.标签高度无法小于19px<br>解决方法：<code>overflow: hidden;</code><br>8.左浮元素margin-bottom失效<br>解决方法：显示设置高度 or 父标签设置<code>_padding-bottom</code>代替子标签的<code>margin-bottom</code> or 再放个标签让父标签浮动，子标签<code>margin-bottom</code>，即(<code>margin-bottom</code>与<code>float</code>不同时作用于一个标签)<br>9.img于块元素中，底边多出空白<br>解决方法：父级设置<code>overflow: hidden;</code> 或 <code>img { display: block; }</code> 或 <code>_margin: -5px;</code>,其实其他浏览器也会有这样的bug<br>10.li之间会有间距<br>解决方法：<code>float: left;</code><br>11.块元素中有文字及右浮动的行元素，行元素换行<br>解决方法：将行元素置于块元素内的文字前<br>12.position下的left，bottom错位<br>解决方法：为父级(<code>relative</code>层)设置宽高或添加*zoom:1<br>13.子级中有设置<code>position</code>，则父级<code>overflow</code>失效<br>解决方法：为父级设置<code>position:relative</code></p>
+<h3 id="基于移动端的PX与REM"><a href="#基于移动端的PX与REM" class="headerlink" title="基于移动端的PX与REM"></a>基于移动端的PX与REM</h3><p>different size  different DPR<br>目前的设计稿 一般是 640 750 1125，一般要先均分成100份，(兼容vh,vm) <code>750/10 = 75px</code>。div宽是<code>240px*120px</code> css的书写改为<code>3.2rem * 1.6rem</code>。 配合响应式修改html根的大小。<br>字体不建议使用rem的，data-dpr属性动态设置字体大小。屏幕变大放更多的文字，或者屏幕更大放更多的字。<br>神奇的<code>padding/margin-top</code>等比例缩放间距</p>
+<h3 id="CSS-HINT"><a href="#CSS-HINT" class="headerlink" title="CSS HINT"></a>CSS HINT</h3><p>1.不要使用多个class选择元素，如<code>a.foo.boo</code>，这在ie6及以下不能正确解析<br>2.移除空的css规则，如<code>a{}</code><br>3.正确的使用显示属性，如<code>display:inline</code>不要和<code>width</code>，<code>height</code>，<code>float</code>，<code>margin</code>,<code>padding</code>同时使用，<code>display:inline-block</code>不要和<code>float</code>同时使用等<br>4.避免过多的浮动，当浮动次数超过十次时，会显示警告<br>5.避免使用过多的字号，当字号声明超过十种时，显示警告<br>6.避免使用过多web字体，当使用超过五次时，显示警告<br>7.避免使用id作为样式选择器<br>8.标题元素只定义一次<br>9.使用<code>width:100%</code>时要小心<br>10.属性值为0时不要写单位<br>11.各浏览器专属的css属性要有规范，<br>例如<code>.foo{-moz-border-radius:5px;border-radius:5px}</code><br>12.避免使用看起来像正则表达式的css3选择器<br>13.遵守盒模型规则</p>
+<h3 id="CSS绘制高级技巧"><a href="#CSS绘制高级技巧" class="headerlink" title="CSS绘制高级技巧"></a>CSS绘制高级技巧</h3><p>box-shadow是可以定义为任意颜色的，并且同一个元素可以投射出不同的box-shadow。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/cssnote/shadow.jpg" alt="图1 shadow" title="">
+                </div>
+                <div class="image-caption">图1 shadow</div>
+            </figure></p>
+<h3 id="盒子-BFCIFC-GFC-FFC"><a href="#盒子-BFCIFC-GFC-FFC" class="headerlink" title="盒子 BFCIFC GFC FFC"></a>盒子 BFCIFC GFC FFC</h3><p>Box: CSS布局的基本单位Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。<br>Formatting context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。</p>
+<h4 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h4><p>block-level box:display 属性为 <code>block</code>, <code>list-item</code>, <code>table</code> 的元素，会生成 block-level box。并且参与 block fomatting context；</p>
+<p>哪些元素会生成BFC?<br>1.根元素<br>2.<code>float</code>属性不为<code>none</code><br>3.<code>position</code>为<code>absolute</code>或<code>fixed</code><br>4.<code>display</code>为<code>inline-block,</code> <code>table-cell</code>, <code>table-caption,</code> <code>flex</code>,<code>inline-flex</code><br>5.<code>overflow</code>不为<code>visible</code></p>
+<h4 id="IFC"><a href="#IFC" class="headerlink" title="IFC"></a>IFC</h4><p>inline-level box:display 属性为 <code>inline</code>, <code>inline-block</code>, <code>inline-table</code> 的元素，会生成 inline-level box。并且参与 inline formatting context；<br>IFC(Inline Formatting Contexts)直译为”内联格式化上下文”，IFC的line box（线框）高度由其包含行内元素中最高的实际高度计算而来（不受到竖直方向的padding/margin影响)</p>
+<h4 id="FFC"><a href="#FFC" class="headerlink" title="FFC"></a>FFC</h4><p>FFC(Flex Formatting Contexts)直译为”自适应格式化上下文”，<code>display</code>值为<code>flex</code>或者<code>inline-flex</code>的元素将会生成自适应容器（flex container）</p>
+<h4 id="GFC"><a href="#GFC" class="headerlink" title="GFC"></a>GFC</h4><p>GFC(GridLayout Formatting Contexts)直译为”网格布局格式化上下文”，当为一个元素设置<code>display</code>值为<code>grid</code>的时候，此元素将会获得一个独立的渲染区域，我们可以通过在网格容器（grid container）上定义网格定义行（grid definition rows）和网格定义列（grid definition columns）属性各在网格项目（grid item）上定义网格行（grid row）和网格列（grid columns）为每一个网格项目（grid item）定义位置和空间。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-08-14T01:13:16.072Z" itemprop="dateUpdated">2018-08-14 09:13:16</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/assets/img/a.jpg" alt="冯观钦">
+            冯观钦
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/06/css/css-note1/&title=《css笔记 -- IE，PX、REM，HINT，盒子》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/06/css/css-note1/&title=《css笔记 -- IE，PX、REM，HINT，盒子》 — Dykily Blog&source=web" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/06/css/css-note1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css笔记 -- IE，PX、REM，HINT，盒子》 — Dykily Blog&url=/2018/08/06/css/css-note1/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2018/08/06/css/css-note1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/08/08/html/htmlknow/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">我不知道的html</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/05/css/css-note/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">css笔记 -- 对象、分层</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>冯观钦 &copy; 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/06/css/css-note1/&title=《css笔记 -- IE，PX、REM，HINT，盒子》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/06/css/css-note1/&title=《css笔记 -- IE，PX、REM，HINT，盒子》 — Dykily Blog&source=web" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/06/css/css-note1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css笔记 -- IE，PX、REM，HINT，盒子》 — Dykily Blog&url=/2018/08/06/css/css-note1/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2018/08/06/css/css-note1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=/2018/08/06/css/css-note1/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
