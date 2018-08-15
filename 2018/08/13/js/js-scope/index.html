@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Dykily Blog">
 <meta property="og:description" content="作用域理解作用域1.引擎 从头到尾负责整个 JavaScript 程序的编译及执行过程2.编译器 引擎的好朋友之一，负责语法分析及代码生成等脏活累活3.作用域 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限 分析 var a = 2;引擎会做些什么引擎会把 var a = 2 分解  遇到 var">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-15T01:10:51.181Z">
+<meta property="og:updated_time" content="2018-08-15T01:26:31.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我不知道的js-作用域">
 <meta name="twitter:description" content="作用域理解作用域1.引擎 从头到尾负责整个 JavaScript 程序的编译及执行过程2.编译器 引擎的好朋友之一，负责语法分析及代码生成等脏活累活3.作用域 引擎的另一位好朋友，负责收集并维护由所有声明的标识符(变量)组成的一系列查 询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限 分析 var a = 2;引擎会做些什么引擎会把 var a = 2 分解  遇到 var">
@@ -164,7 +164,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#作用域"><span class="post-toc-number">1.</span> <span class="post-toc-text">作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#理解作用域"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">理解作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-var-a-2"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">分析 var a = 2;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#引擎会做些什么"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">引擎会做些什么</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#编译器有话说"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">编译器有话说</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#小结"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">小结</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#with作用域"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">with作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么是with"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">什么是with</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#with怎么用"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">with怎么用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#with应该注意的地方"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">with应该注意的地方</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">2.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#作用域"><span class="post-toc-number">1.</span> <span class="post-toc-text">作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#理解作用域"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">理解作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-var-a-2"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">分析 var a = 2;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#引擎会做些什么"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">引擎会做些什么</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#编译器有话说"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">编译器有话说</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#小结"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">小结</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#欺骗-修改-词法作用域"><span class="post-toc-number">2.</span> <span class="post-toc-text">欺骗(修改)词法作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#eval"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">eval</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#eval例子"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">eval例子</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#with作用域"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">with作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么是with"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">什么是with</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#with怎么用"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">with怎么用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#with应该注意的地方"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">with应该注意的地方</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">3.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
         </nav>
     </aside>
     
@@ -195,10 +195,13 @@
 <p>总结:变量的赋值操作会执行两个动作，首先编译器会在当前作用域中声明一个变量(如 果之前没有声明过)，然后在运行时引擎会在作用域中查找该变量，如果能够找到就会对 它赋值。</p>
 <h4 id="编译器有话说"><a href="#编译器有话说" class="headerlink" title="编译器有话说"></a>编译器有话说</h4><p>编译器在上面第二步中生成了代码，引擎执行它时，会通过查找变量 a 来判断它是 否已声明过。<br>查找的过程由作用域进行协助，但引擎执行怎样的查找，会影响最终的查找结果<br>例子中，引擎会为变量 a 进行 LHS 查询。另外一个查找的类型叫作 RHS。<br>当变量出现在赋值操作的左侧时进行 <em>LHS 查询</em>，出现在右侧时进行 <em>RHS 查询</em><br>LHS 和 RHS 的含义是“赋值操作的左侧或右侧”并不一定意味着就是 <em>“= 赋值操作符的左侧或右侧”</em> 。<br>赋值操作还有其他几种形式，因此在概念上最 好将其理解为“赋值操作的目标是谁(LHS)”以及“谁是赋值操作的源头(RHS)”</p>
 <h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>作用域是一套规则，用于确定在何处以及如何查找变量(标识符)。如果查找的目的是对<br>变量进行赋值，就会使用 LHS 查询;如果目的是获取变量的值，就会使用 RHS 查询。<br>不成功的 RHS 引用会导致<em>抛出ReferenceError异常</em>。不成功的LHS引用会导致<em>自动隐式地创建一个全局变量(非严格模式下)</em>，该变量使用LHS引用的目标作为标识符，或者<em>抛出ReferenceError 异常(严格模式下)</em>。</p>
+<h2 id="欺骗-修改-词法作用域"><a href="#欺骗-修改-词法作用域" class="headerlink" title="欺骗(修改)词法作用域"></a>欺骗(修改)词法作用域</h2><h3 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h3><p>JavaScript 中的 eval(..) 函数可以接受一个字符串为参数，并将其中的内容视为好像在书 写时就存在于程序中这个位置的代码。</p>
+<h4 id="eval例子"><a href="#eval例子" class="headerlink" title="eval例子"></a>eval例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo(str, a) &#123; </span><br><span class="line">    eval( str ); // 欺骗! </span><br><span class="line">    console.log( a, b );</span><br><span class="line">&#125;</span><br><span class="line">var b = 2;</span><br><span class="line">foo( &quot;var b = 3;&quot;, 1 ); // 1, 3</span><br></pre></td></tr></table></figure>
+<p>val(..) 调用中的 “var b = 3;” 这段代码会被当作本来就在那里一样来处理。由于那段代 码声明了一个新的变量 b，因此它对已经存在的 foo(..) 的词法作用域进行了修改。事实上，这段代码实际上在 foo(..) 内部创建了一个变量 b，并遮蔽 了外部(全局)作用域中的同名变量。</p>
 <h3 id="with作用域"><a href="#with作用域" class="headerlink" title="with作用域"></a>with作用域</h3><h4 id="什么是with"><a href="#什么是with" class="headerlink" title="什么是with"></a>什么是with</h4><p>with 通常被当作重复引用同一个对象中的多个属性的快捷方式，可以不需要重复引用对象 本身。</p>
 <h4 id="with怎么用"><a href="#with怎么用" class="headerlink" title="with怎么用"></a>with怎么用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123; a: 1,b: 2,c: 3 &#125;;</span><br><span class="line">// 单调乏味的重复 &quot;obj&quot; </span><br><span class="line">obj.a = 2;</span><br><span class="line">obj.b = 3;</span><br><span class="line">obj.c = 4;</span><br><span class="line">// 简单的快捷方式 </span><br><span class="line">with (obj) &#123;</span><br><span class="line">    a = 3;</span><br><span class="line">    b = 4;</span><br><span class="line">    c = 5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="with应该注意的地方"><a href="#with应该注意的地方" class="headerlink" title="with应该注意的地方"></a>with应该注意的地方</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function foo(obj) &#123; </span><br><span class="line">    with (obj) &#123;</span><br><span class="line">        a = 2; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var o1 = &#123; a: 3&#125;;</span><br><span class="line">var o2 = &#123; b: 3&#125;;</span><br><span class="line">foo( o1 );</span><br><span class="line">console.log( o1.a ); // 2</span><br><span class="line">foo( o2 );</span><br><span class="line">console.log( o2.a ); // undefined</span><br><span class="line">console.log( a ); // 2，a 被泄漏到全局作用域上了!</span><br></pre></td></tr></table></figure>
-<p>当我们传递 o1 给 with 时，with 所声明的作用域是 o1，而这个作用域中含 有一个同 o1.a 属性相符的标识符。但当我们将 o2 作为作用域时，其中并没有 a 标识符， 因此进行了正常的 <em>LHS标识符查找</em>, o2 的 with 最后都没找到a这个标识符，非严格模式下回自动创建这个全局变量</p>
+<p>当我们传递 o1 给 with 时，with 所声明的作用域是 o1，而这个作用域中含 有一个同 o1.a 属性相符的标识符。但当我们将 o2 作为作用域时，其中并没有 a 标识符， 因此进行了正常的 <em>LHS标识符查找</em>, o2 的 with 最后都没找到a这个标识符，当执行<code>a = 2</code>非严格模式下回自动创建这个全局变量</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://book.douban.com/subject/26351021/" target="_blank" rel="noopener">你不知道的js</a></p>
 
         </div>
@@ -207,7 +210,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-08-15T01:10:51.181Z" itemprop="dateUpdated">2018-08-15 09:10:51</time>
+    Last updated: <time datetime="2018-08-15T01:26:31.603Z" itemprop="dateUpdated">2018-08-15 09:26:31</time>
 </span><br>
 
 
@@ -281,7 +284,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/08/15/js/js-this/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">我不知道的js-this</h4>
+      </a>
+    </div>
   
 
   
