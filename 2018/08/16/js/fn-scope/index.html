@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>我不知道的js-函数作用域、块作用域、变量提升 | Dykily Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js">
+    <meta name="description" content="函数作用域说明任意代码片段外部添加包装函数，可以将内部的变量和函数定义“隐藏”起来，外部作用域无法访问包装函数内部的任何内容。 立即执行函数（IIFE）(function foo() {})(); 和 (function foo() {}()); 是最常见的IIFE，其实还有其方式的IIFE，比如可以用 ! ~ 等等这些运算符。 立即执行函数传参可以向IIFE传递参数，如下123(function">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我不知道的js-函数作用域、块作用域、变量提升">
+<meta property="og:url" content="/2018/08/16/js/fn-scope/index.html">
+<meta property="og:site_name" content="Dykily Blog">
+<meta property="og:description" content="函数作用域说明任意代码片段外部添加包装函数，可以将内部的变量和函数定义“隐藏”起来，外部作用域无法访问包装函数内部的任何内容。 立即执行函数（IIFE）(function foo() {})(); 和 (function foo() {}()); 是最常见的IIFE，其实还有其方式的IIFE，比如可以用 ! ~ 等等这些运算符。 立即执行函数传参可以向IIFE传递参数，如下123(function">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-17T00:59:57.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我不知道的js-函数作用域、块作用域、变量提升">
+<meta name="twitter:description" content="函数作用域说明任意代码片段外部添加包装函数，可以将内部的变量和函数定义“隐藏”起来，外部作用域无法访问包装函数内部的任何内容。 立即执行函数（IIFE）(function foo() {})(); 和 (function foo() {}()); 是最常见的IIFE，其实还有其方式的IIFE，比如可以用 ! ~ 等等这些运算符。 立即执行函数传参可以向IIFE传递参数，如下123(function">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/assets/img/a.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">冯观钦</h5>
+          <a href="mailto:250684079@qq.com" title="250684079@qq.com" class="mail">250684079@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/dykily" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">我不知道的js-函数作用域、块作用域、变量提升</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">我不知道的js-函数作用域、块作用域、变量提升</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-16T01:06:23.000Z" itemprop="datePublished" class="page-time">
+  2018-08-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/js/">js</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#函数作用域说明"><span class="post-toc-number">1.</span> <span class="post-toc-text">函数作用域说明</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#立即执行函数（IIFE）"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">立即执行函数（IIFE）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#立即执行函数传参"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">立即执行函数传参</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#块作用域说明"><span class="post-toc-number">2.</span> <span class="post-toc-text">块作用域说明</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#块作用域垃圾收集"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">块作用域垃圾收集</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量提升"><span class="post-toc-number">3.</span> <span class="post-toc-text">变量提升</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-js/fn-scope"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">我不知道的js-函数作用域、块作用域、变量提升</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-16 09:06:23" datetime="2018-08-16T01:06:23.000Z"  itemprop="datePublished">2018-08-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/js/">js</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="函数作用域说明"><a href="#函数作用域说明" class="headerlink" title="函数作用域说明"></a>函数作用域说明</h3><p>任意代码片段外部添加包装函数，可以将内部的变量和函数定义“隐藏”起来，外部作用域无法访问包装函数内部的任何内容。</p>
+<h4 id="立即执行函数（IIFE）"><a href="#立即执行函数（IIFE）" class="headerlink" title="立即执行函数（IIFE）"></a>立即执行函数（IIFE）</h4><p><code>(function foo() {})();</code> 和 <code>(function foo() {}());</code> 是最常见的IIFE，其实还有其方式的IIFE，比如可以用 <code>!</code> <code>~</code> 等等这些运算符。</p>
+<h4 id="立即执行函数传参"><a href="#立即执行函数传参" class="headerlink" title="立即执行函数传参"></a>立即执行函数传参</h4><p>可以向IIFE传递参数，如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(function IIFE( win ) &#123;</span><br><span class="line"></span><br><span class="line">&#125;)( window );</span><br></pre></td></tr></table></figure></p>
+<p>因此在代码风格上对全局 对象的引用变得比引用一个没有“全局”字样的变量更加清晰，其次还能减少作用域查找变量<em>(RHS)</em>的次数。</p>
+<p>这个模式的另外一个应用场景是解决<code>undefined</code> 标识符的默认值被错误覆盖导致的异常，将一个参数命名为<code>undefined</code>，但是在对应的位置不传入任何值，这样就可以 保证在代码块中 <code>undefined</code>标识符的值真的是<code>undefined</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">undefined = true; // 这样会把 undefined 覆盖</span><br><span class="line">(function IIFE( undefined ) &#123;</span><br><span class="line">    var a;</span><br><span class="line">    if (a === undefined) &#123;</span><br><span class="line">        console.log( &quot;Undefined is safe here!&quot; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<h3 id="块作用域说明"><a href="#块作用域说明" class="headerlink" title="块作用域说明"></a>块作用域说明</h3><p>在ES6之前javascript严格来说并没有块级作用域，或者说它某些语法可以生成块级作用域，js仅可以通过<code>with</code>和<code>try/catch</code>产生块级作用域。<br>用 <code>with</code> 从对象中创建出的作用域仅在 with 声明中而非外部作用域中有效。<br>ES3规范中规定<code>try/catch</code>的<code>catch</code> 分句会创建一个块作用域，其中声明的变量仅在<code>catch</code>内部有效。<br>在es6出来后<code>let</code>为其声明的变量隐式地了所在的块作用域。</p>
+<h4 id="块作用域垃圾收集"><a href="#块作用域垃圾收集" class="headerlink" title="块作用域垃圾收集"></a>块作用域垃圾收集</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function process(data) &#123;</span><br><span class="line">// do somethings</span><br><span class="line">&#125;</span><br><span class="line">var someReallyBigData = &#123; a:1 &#125;;</span><br><span class="line">process( someReallyBigData );</span><br><span class="line">var btn = document.getElementById( &quot;my_button&quot; );</span><br><span class="line">      btn.addEventListener( &quot;click&quot;, function click(evt) &#123;</span><br><span class="line">          console.log(&quot;button clicked&quot;);</span><br><span class="line">&#125;, /*capturingPhase=*/false );</span><br></pre></td></tr></table></figure>
+<p><code>click</code> 函数的点击回调并不需要 someReallyBigData 变量。理论上这意味着当 <code>process(..)</code> 执 行后，在内存中占用大量空间的数据结构就可以被垃圾回收了。但是，由于 <code>click</code> 函数形成 了一个覆盖整个作用域的闭包，JavaScript 引擎极有可能依然保存着这个结构(取决于具体 实现)。</p>
+<p>块作用域可以打消这种顾虑，可以让引擎清楚地知道没有必要继续保存<code>someReallyBigData</code>了，如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function process(data) &#123;</span><br><span class="line">// 在这里做点有趣的事情</span><br><span class="line">&#125;</span><br><span class="line">// 在这个块中定义的内容可以销毁了! &#123;</span><br><span class="line">let someReallyBigData = &#123; .. &#125;; process( someReallyBigData );</span><br><span class="line">&#125;</span><br><span class="line">var btn = document.getElementById( &quot;my_button&quot; );</span><br><span class="line">     btn.addEventListener( &quot;click&quot;, function click(evt)&#123;</span><br><span class="line">         console.log(&quot;button clicked&quot;);</span><br><span class="line">&#125;, /*capturingPhase=*/false );</span><br></pre></td></tr></table></figure></p>
+<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>函数声明和变量声明都会被提升。但是一个值得注意的细节(这个细节可以出现在有多个<br>“重复”声明的代码中)是函数会首先被提升，然后才是变量。<br>无论作用域中的声明出现在什么地方，都将在代码本身被执行前首先进行处理。 可以将这个过程形象地想象成所有的声明(变量和函数)都会被“移动”到各自作用域的 最顶端，这个过程被称为提升。<br>声明本身会被提升，而包括函数表达式的赋值在内的赋值操作并不会提升。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-08-17T00:59:57.974Z" itemprop="dateUpdated">2018-08-17 08:59:57</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/assets/img/a.jpg" alt="冯观钦">
+            冯观钦
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/16/js/fn-scope/&title=《我不知道的js-函数作用域、块作用域、变量提升》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/16/js/fn-scope/&title=《我不知道的js-函数作用域、块作用域、变量提升》 — Dykily Blog&source=web" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/16/js/fn-scope/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我不知道的js-函数作用域、块作用域、变量提升》 — Dykily Blog&url=/2018/08/16/js/fn-scope/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2018/08/16/js/fn-scope/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/15/js/js-this/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">我不知道的js-this</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>冯观钦 &copy; 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/16/js/fn-scope/&title=《我不知道的js-函数作用域、块作用域、变量提升》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/16/js/fn-scope/&title=《我不知道的js-函数作用域、块作用域、变量提升》 — Dykily Blog&source=web" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/16/js/fn-scope/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我不知道的js-函数作用域、块作用域、变量提升》 — Dykily Blog&url=/2018/08/16/js/fn-scope/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2018/08/16/js/fn-scope/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=/2018/08/16/js/fn-scope/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
