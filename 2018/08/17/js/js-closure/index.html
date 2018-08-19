@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Dykily Blog">
 <meta property="og:description" content="什么是闭包或许很多人也在纠结这个问题，其实我对闭包也是看过很多的说法，我比较倾向于《你不知道的js》中的解释下面我们来看一段代码，清晰地展示了闭包:123456function foo() &amp;#123; var a = 2;function bar() &amp;#123; console.log( a );&amp;#125;return bar; &amp;#125;var baz = foo();baz(); //">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-17T01:35:53.601Z">
+<meta property="og:updated_time" content="2018-08-19T12:18:00.212Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我不知道的js-闭包">
 <meta name="twitter:description" content="什么是闭包或许很多人也在纠结这个问题，其实我对闭包也是看过很多的说法，我比较倾向于《你不知道的js》中的解释下面我们来看一段代码，清晰地展示了闭包:123456function foo() &amp;#123; var a = 2;function bar() &amp;#123; console.log( a );&amp;#125;return bar; &amp;#125;var baz = foo();baz(); //">
@@ -164,7 +164,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是闭包"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是闭包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">2.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是闭包"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是闭包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小结"><span class="post-toc-number">2.</span> <span class="post-toc-text">小结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">3.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
         </nav>
     </aside>
     
@@ -186,7 +186,8 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h3 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h3><p>或许很多人也在纠结这个问题，其实我对闭包也是看过很多的说法，我比较倾向于《你不知道的js》中的解释<br>下面我们来看一段代码，清晰地展示了闭包:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123; var a = 2;</span><br><span class="line">function bar() &#123; console.log( a );</span><br><span class="line">&#125;</span><br><span class="line">return bar; &#125;</span><br><span class="line">var baz = foo();</span><br><span class="line">baz(); // 2 —— 朋友，这就是闭包的效果。</span><br></pre></td></tr></table></figure></p>
-<p>函数 <code>bar()</code> 的词法作用域能够访问 <code>foo()</code> 的内部作用域。然后我们将 <code>bar()</code>函数本身当作 一个值类型进行传递。在这个例子中，我们将 bar 所引用的函数对象本身当作返回值。<br>在 <code>foo()</code>执行后，其返回值(也就是内部的 <code>bar()</code> 函数)赋值给变量 <code>baz</code> 并调用 <code>baz()</code>，实 际上只是通过不同的标识符引用调用了内部的函数 <code>bar()</code>。<br>bar() 显然可以被正常执行。但是在这个例子中，它在自己定义的词法作用域以外的地方 执行。<br>在 <code>foo()</code> 执行后，通常会期待 <code>foo()</code> 的整个内部作用域都被销毁，因为我们知道引擎有垃 圾回收器用来释放不再使用的内存空间。由于看上去 <code>foo()</code> 的内容不会再被使用，所以很 自然地会考虑对其进行回收。<br>而闭包的“神奇”之处正是可以阻止这件事情的发生。事实上内部作用域依然存在，因此 没有被回收。谁在使用这个内部作用域?原来是 bar() 本身在使用。<br>拜 <code>bar()</code> 所声明的位置所赐，它拥有涵盖 <code>foo()</code> 内部作用域的闭包，使得该作用域能够一 直存活，以供 <code>bar()</code> 在之后任何时间进行引用。<br><code>bar()</code> 依然持有对该作用域的引用，而这个引用就叫作闭包。</p>
+<p>函数 <code>bar()</code> 的词法作用域能够访问 <code>foo()</code> 的内部作用域。然后我们将 <code>bar()</code>函数本身当作 一个值类型进行传递。在这个例子中，我们将 bar 所引用的函数对象本身当作返回值。<br>在 <code>foo()</code>执行后，其返回值(也就是内部的 <code>bar()</code> 函数)赋值给变量 <code>baz</code> 并调用 <code>baz()</code>，实 际上只是通过不同的标识符引用调用了内部的函数 <code>bar()</code>。<br>bar() 显然可以被正常执行。但是在这个例子中，它在自己定义的词法作用域以外的地方 执行。<br>在 <code>foo()</code> 执行后，通常会期待 <code>foo()</code> 的整个内部作用域都被销毁，因为我们知道引擎有垃圾回收器用来释放不再使用的内存空间。由于看上去 <code>foo()</code> 的内容不会再被使用，所以很 自然地会考虑对其进行回收。<br>而闭包的“神奇”之处正是可以阻止这件事情的发生。事实上内部作用域依然存在，因此 没有被回收。谁在使用这个内部作用域?原来是<code>bar()</code>本身在使用。<br>拜 <code>bar()</code> 所声明的位置所赐，它拥有涵盖 <code>foo()</code> 内部作用域的闭包，使得该作用域能够一直存活，以供 <code>bar()</code> 在之后任何时间进行引用。<br><code>bar()</code> 依然持有对该作用域的引用，而这个引用就叫作闭包。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>当函数可以记住并访问所在的词法作用域，即使函数是在当前词法作用域之外执行，这时就产生了闭包。</p>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a href="https://book.douban.com/subject/26351021/" target="_blank" rel="noopener">你不知道的js</a></p>
 
         </div>
@@ -195,7 +196,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-08-17T01:35:53.601Z" itemprop="dateUpdated">2018-08-17 09:35:53</time>
+    Last updated: <time datetime="2018-08-19T12:18:00.212Z" itemprop="dateUpdated">2018-08-19 20:18:00</time>
 </span><br>
 
 
