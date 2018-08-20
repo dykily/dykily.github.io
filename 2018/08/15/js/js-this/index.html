@@ -20,18 +20,18 @@
     
     
     <meta name="keywords" content="js">
-    <meta name="description" content="this理解this太拘泥于this的字面意思就会产生一些误解。有两种常见的对于this的解释，指向自身和指向作用域，但是它们都是错误的。this 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用。 continuing, coming soon. 参考文献你不知道的js">
+    <meta name="description" content="this理解this太拘泥于this的字面意思就会产生一些误解。有两种常见的对于this的解释，指向自身和指向作用域，但是它们都是错误的。this 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用。 this绑定规则默认绑定首先要介绍的是最常用的函数调用类型:独立函数调用。可以把这条规则看作是无法应用其他规则时的默认规则。12345function foo() &amp;#123;">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我不知道的js-this">
 <meta property="og:url" content="/2018/08/15/js/js-this/index.html">
 <meta property="og:site_name" content="Dykily Blog">
-<meta property="og:description" content="this理解this太拘泥于this的字面意思就会产生一些误解。有两种常见的对于this的解释，指向自身和指向作用域，但是它们都是错误的。this 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用。 continuing, coming soon. 参考文献你不知道的js">
+<meta property="og:description" content="this理解this太拘泥于this的字面意思就会产生一些误解。有两种常见的对于this的解释，指向自身和指向作用域，但是它们都是错误的。this 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用。 this绑定规则默认绑定首先要介绍的是最常用的函数调用类型:独立函数调用。可以把这条规则看作是无法应用其他规则时的默认规则。12345function foo() &amp;#123;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-19T13:10:22.921Z">
+<meta property="og:updated_time" content="2018-08-20T12:19:49.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我不知道的js-this">
-<meta name="twitter:description" content="this理解this太拘泥于this的字面意思就会产生一些误解。有两种常见的对于this的解释，指向自身和指向作用域，但是它们都是错误的。this 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用。 continuing, coming soon. 参考文献你不知道的js">
+<meta name="twitter:description" content="this理解this太拘泥于this的字面意思就会产生一些误解。有两种常见的对于this的解释，指向自身和指向作用域，但是它们都是错误的。this 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用。 this绑定规则默认绑定首先要介绍的是最常用的函数调用类型:独立函数调用。可以把这条规则看作是无法应用其他规则时的默认规则。12345function foo() &amp;#123;">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -123,7 +123,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -164,7 +164,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#this"><span class="post-toc-number">1.</span> <span class="post-toc-text">this</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#理解this"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">理解this</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">2.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#this"><span class="post-toc-number">1.</span> <span class="post-toc-text">this</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#理解this"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">理解this</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#this绑定规则"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">this绑定规则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#默认绑定"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">默认绑定</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#隐式绑定"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">隐式绑定</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#隐式丢失"><span class="post-toc-number">1.2.2.1.</span> <span class="post-toc-text">隐式丢失</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#显式绑定"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">显式绑定</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#new绑定"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">new绑定</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#this绑定规则优先级"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">this绑定规则优先级</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">2.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
         </nav>
     </aside>
     
@@ -186,6 +186,29 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><h3 id="理解this"><a href="#理解this" class="headerlink" title="理解this"></a>理解this</h3><p>太拘泥于<code>this</code>的字面意思就会产生一些误解。有两种常见的对于<code>this</code>的解释，指向自身和指向作用域，但是它们都是错误的。<br>this 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用。</p>
+<h3 id="this绑定规则"><a href="#this绑定规则" class="headerlink" title="this绑定规则"></a>this绑定规则</h3><h4 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h4><p>首先要介绍的是最常用的函数调用类型:独立函数调用。可以把这条规则看作是无法应用其他规则时的默认规则。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123; </span><br><span class="line">    console.log( this.a );</span><br><span class="line">&#125;</span><br><span class="line">var a = 2; </span><br><span class="line">foo(); // 2</span><br></pre></td></tr></table></figure></p>
+<p>可以通过分析调用位置来看看<code>foo()</code>是如何调用的。在代码中，<code>foo()</code>是直接使用不带任何修饰的函数引用进行调用的，因此只能使用默认绑定，无法应用其他规则。<br>如果使用严格模式<em>(strict mode)</em>，那么全局对象将无法使用默认绑定，因此<code>this</code>会绑定到<code>undefined</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123; &quot;use strict&quot;;</span><br><span class="line">         console.log( this.a );</span><br><span class="line">     &#125;</span><br><span class="line">var a = 2;</span><br><span class="line">foo(); // TypeError: this is undefined</span><br></pre></td></tr></table></figure></p>
+<p>这里有一个微妙但是非常重要的细节，虽然<code>this</code>的绑定规则完全取决于调用位置，但是只有<code>foo()</code>运行在<em>非strict mode</em>下时，默认绑定才能绑定到全局对象;严格模式下与<code>foo()</code>的调用位置无关:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123; </span><br><span class="line">    console.log( this.a );</span><br><span class="line">&#125;</span><br><span class="line">var a = 2;</span><br><span class="line">(function()&#123;</span><br><span class="line">    &quot;use strict&quot;;</span><br><span class="line">    foo(); // 2</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<h4 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h4><p>另一条需要考虑的规则是调用位置是否有上下文对象，或者说是否被某个对象拥有或者包含，不过这种说法可能会造成一些误导。<br>思考下面的代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123; console.log( this.a );</span><br><span class="line">&#125;</span><br><span class="line">var obj = &#123; a: 2,</span><br><span class="line">foo: foo &#125;;</span><br><span class="line">obj.foo(); // 2</span><br></pre></td></tr></table></figure></p>
+<p>但是无论是直接在 <code>obj</code> 中定义还是先定义再添加为引用属性，这个函数严格来说都不属于 <code>obj</code> 对象。<br>然而，调用位置会使用 <code>obj</code> 上下文来引用函数，因此你可以说函数被调用时 <code>obj</code> 对象“拥 有”或者“包含”它。<br>隐式绑定规则会把函数调用中的 this 绑定到这个上下文对象。因为调 用 <code>foo()</code> 时 <code>this</code> 被绑定到 <code>obj</code>，因此 <code>this.a</code> 和 <code>obj.a</code> 是一样的。<br>对象属性引用链中只有最顶层或者说最后一层会影响调用位置。举例来说:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123; </span><br><span class="line">    console.log( this.a );</span><br><span class="line">&#125;</span><br><span class="line">var obj2 = &#123; a: 42,</span><br><span class="line">foo: foo &#125;;</span><br><span class="line">var obj1 = &#123; a: 2,</span><br><span class="line">obj2: obj2 &#125;;</span><br><span class="line">obj1.obj2.foo(); // 42</span><br></pre></td></tr></table></figure></p>
+<h5 id="隐式丢失"><a href="#隐式丢失" class="headerlink" title="隐式丢失"></a>隐式丢失</h5><p>一个最常见的 <code>this</code> 绑定问题就是被隐式绑定的函数会丢失绑定对象，也就是说它会应用<em>默认绑定</em>，从而把 <code>this</code> 绑定到全局对象或者 <code>undefined</code> 上，取决于是否是严格模式。<br>思考下面的代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123; </span><br><span class="line">    console.log( this.a );</span><br><span class="line">&#125;</span><br><span class="line">var obj = &#123; </span><br><span class="line">    a: 2,</span><br><span class="line">    foo: foo </span><br><span class="line">&#125;;</span><br><span class="line">var bar = obj.foo; // 函数别名!</span><br><span class="line">var a = &quot;oops, global&quot;; // a 是全局对象的属性 </span><br><span class="line">bar(); // &quot;oops, global&quot;</span><br></pre></td></tr></table></figure></p>
+<p>虽然 <code>bar</code> 是 <code>obj.foo</code> 的一个引用，但是实际上，它引用的是 <code>foo</code> 函数本身，因此此时的 <code>bar()</code> 其实是一个不带任何修饰的函数调用，因此应用了默认绑定。</p>
+<p>一种更微妙、更常见并且更出乎意料的情况发生在<em>传入回调函数</em>时，参数传递其实就是一种<em>隐式赋值</em>，因此我们传入函数时也会被<em>隐式赋值</em>，</p>
+<h4 id="显式绑定"><a href="#显式绑定" class="headerlink" title="显式绑定"></a>显式绑定</h4><p>可以使用函数的 <code>call(..)</code> 和 <code>apply(..)</code> 方法对函数进行<em>硬绑定</em>，<br>在ES5中提供了新的硬绑定内置的方法 <code>Function.prototype.bind</code>，用法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function foo(something) &#123; </span><br><span class="line">    console.log( this.a, something ); </span><br><span class="line">    return this.a + something;</span><br><span class="line">&#125;</span><br><span class="line">var obj = &#123; </span><br><span class="line">    a:2</span><br><span class="line">&#125;;</span><br><span class="line">var bar = foo.bind( obj );</span><br><span class="line">var b = bar( 3 ); // 2 3 </span><br><span class="line">console.log( b ); // 5</span><br></pre></td></tr></table></figure></p>
+<p><code>bind(..)</code> 会返回一个硬编码的新函数，它会把参数设置为 this 的上下文并调用原始函数。</p>
+<h4 id="new绑定"><a href="#new绑定" class="headerlink" title="new绑定"></a>new绑定</h4><p>首先我们重新定义一下 JavaScript 中的“构造函数”。在 JavaScript 中，构造函数只是一些 使用 <code>new</code> 操作符时被调用的函数。它们并不会属于某个类，也不会实例化一个类。实际上， 它们甚至都不能说是一种特殊的函数类型，它们只是被 <code>new</code> 操作符调用的普通函数而已。<br>包括内置对象函数在内的所有函数都可 以用 <code>new</code> 来调用，这种函数调用被称为构造函数调用。这里有一个重要但是非常细微的区 别:实际上并不存在所谓的<em>“构造函数”</em>，只有对于函数的<em>“构造调用”</em>。</p>
+<p>使用 new 来调用函数，或者说发生构造函数调用时，会自动执行下面的操作。</p>
+<pre><code>1. 创建(或者说构造)一个全新的对象。
+2. 这个新对象会被执行[[原型]]连接。
+3. 这个新对象会绑定到函数调用的this。
+4. 如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象。
+</code></pre><h3 id="this绑定规则优先级"><a href="#this绑定规则优先级" class="headerlink" title="this绑定规则优先级"></a>this绑定规则优先级</h3><p>默认绑定 &lt; 隐式绑定 &lt; 显式绑定 &lt; new绑定<br>现在我们可以根据优先级来判断函数在某个调用位置应用的是哪条规则。可以按照下面的<br>顺序来进行判断:</p>
+<ol>
+<li>函数是否在new中调用(new绑定)?如果是的话this绑定的是新创建的对象。<br>  var bar = new foo()</li>
+<li>函数是否通过call、apply(显式绑定)或者硬绑定调用?如果是的话，this绑定的是 指定的对象。<br>  var bar = foo.call(obj2)</li>
+<li>函数是否在某个上下文对象中调用(隐式绑定)?如果是的话，this 绑定的是那个上 下文对象。<br>  var bar = obj1.foo()</li>
+<li>如果都不是的话，使用默认绑定。如果在严格模式下，就绑定到undefined，否则绑定到 全局对象。</li>
+</ol>
 <p>continuing, coming soon.</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://book.douban.com/subject/26351021/" target="_blank" rel="noopener">你不知道的js</a></p>
 
@@ -195,7 +218,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-08-19T13:10:22.921Z" itemprop="dateUpdated">2018-08-19 21:10:22</time>
+    最后更新时间：<time datetime="2018-08-20T12:19:49.414Z" itemprop="dateUpdated">2018-08-20 20:19:49</time>
 </span><br>
 
 
@@ -318,7 +341,7 @@
 
         <p>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
