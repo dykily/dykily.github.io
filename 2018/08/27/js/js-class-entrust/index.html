@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>我不知道的js-类和委托 | Dykily Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="类理论假设我们需要在软件中建模一些类似的任务(“XYZ”、“ABC”等)。如果使用类，那设计方法可能是这样的:定义一个通用父(基)类，可以将其命名为 Task，在 Task 类中定义所有任务都有的行为。接着定义子类 XYZ 和 ABC，它们都继承自 Task 并且会添加一些特殊的行为来处理对应的任务。类设计模式鼓励你在继承时使用方法重写(和多态)类的伪代码1234567891011121314cl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我不知道的js-类和委托">
+<meta property="og:url" content="/2018/08/27/js/js-class-entrust/index.html">
+<meta property="og:site_name" content="Dykily Blog">
+<meta property="og:description" content="类理论假设我们需要在软件中建模一些类似的任务(“XYZ”、“ABC”等)。如果使用类，那设计方法可能是这样的:定义一个通用父(基)类，可以将其命名为 Task，在 Task 类中定义所有任务都有的行为。接着定义子类 XYZ 和 ABC，它们都继承自 Task 并且会添加一些特殊的行为来处理对应的任务。类设计模式鼓励你在继承时使用方法重写(和多态)类的伪代码1234567891011121314cl">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="/assets/img/article/class_entrust/class_style.jpg">
+<meta property="og:image" content="/assets/img/article/class_entrust/wt_style.jpg">
+<meta property="og:updated_time" content="2018-08-27T09:07:35.222Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我不知道的js-类和委托">
+<meta name="twitter:description" content="类理论假设我们需要在软件中建模一些类似的任务(“XYZ”、“ABC”等)。如果使用类，那设计方法可能是这样的:定义一个通用父(基)类，可以将其命名为 Task，在 Task 类中定义所有任务都有的行为。接着定义子类 XYZ 和 ABC，它们都继承自 Task 并且会添加一些特殊的行为来处理对应的任务。类设计模式鼓励你在继承时使用方法重写(和多态)类的伪代码1234567891011121314cl">
+<meta name="twitter:image" content="/assets/img/article/class_entrust/class_style.jpg">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/assets/img/a.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">冯观钦</h5>
+          <a href="mailto:250684079@qq.com" title="250684079@qq.com" class="mail">250684079@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/dykily" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">我不知道的js-类和委托</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">我不知道的js-类和委托</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-27T08:20:36.000Z" itemprop="datePublished" class="page-time">
+  2018-08-27
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#类理论"><span class="post-toc-number">1.</span> <span class="post-toc-text">类理论</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#委托行为"><span class="post-toc-number">2.</span> <span class="post-toc-text">委托行为</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#比较思维模型"><span class="post-toc-number">3.</span> <span class="post-toc-text">比较思维模型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-js/js-class-entrust"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">我不知道的js-类和委托</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-27 16:20:36" datetime="2018-08-27T08:20:36.000Z"  itemprop="datePublished">2018-08-27</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="类理论"><a href="#类理论" class="headerlink" title="类理论"></a>类理论</h3><p>假设我们需要在软件中建模一些类似的任务(“XYZ”、“ABC”等)。<br>如果使用类，那设计方法可能是这样的:定义一个通用父(基)类，可以将其命名为 <code>Task</code>，在 <code>Task</code> 类中定义所有任务都有的行为。接着定义子类 <code>XYZ</code> 和 <code>ABC</code>，它们都继承自 <code>Task</code> 并且会添加一些特殊的行为来处理对应的任务。类设计模式鼓励你在继承时使用方法重写(和多态)<br>类的伪代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Task &#123; </span><br><span class="line">    id;</span><br><span class="line">    // 构造函数 Task()</span><br><span class="line">    Task(ID) &#123; id = ID; &#125; </span><br><span class="line">    outputTask() &#123; output( id ); &#125;</span><br><span class="line">&#125;</span><br><span class="line">class XYZ inherits Task &#123; </span><br><span class="line">    label;</span><br><span class="line">    // 构造函数 XYZ()</span><br><span class="line">    XYZ(ID,Label) &#123; super( ID ); label = Label; &#125; </span><br><span class="line">    outputTask() &#123; super(); output( label ); &#125;</span><br><span class="line">&#125;</span><br><span class="line">class ABC inherits Task &#123; // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="委托行为"><a href="#委托行为" class="headerlink" title="委托行为"></a>委托行为</h3><p>但是现在我们试着来使用委托行为而不是类来思考同样的问题。<br>首先你会定义一个名为 <code>Task</code> 的对象(和许多 JavaScript 开发者告诉你的不同，它既不是类 也不是函数)，它会包含所有任务都可以使用(写作使用，读作委托)的具体行为。接着， 对于每个任务(“XYZ”、“ABC”)你都会定义一个对象来存储对应的数据和行为。你会把 特定的任务对象都关联到 <code>Task</code> 功能对象上，让它们在需要的时候可以进行委托。<br>基本上你可以想象成，执行任务“XYZ”需要两个兄弟对象(<code>XYZ</code> 和 <code>Task</code>)协作完成。但 是我们并不需要把这些行为放在一起，通过类的复制，我们可以把它们分别放在各自独立 的对象中，需要时可以允许 <code>XYZ</code> 对象委托给 <code>Task</code><br>下面是推荐的代码形式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Task = &#123;</span><br><span class="line">    setID: function(ID) &#123; this.id = ID; &#125;,</span><br><span class="line">    outputID: function() &#123; console.log( this.id ); &#125;</span><br><span class="line">&#125;;</span><br><span class="line">// 让XYZ委托Task</span><br><span class="line">XYZ = Object.create( Task );</span><br><span class="line">XYZ.prepareTask = function(ID,Label) &#123; </span><br><span class="line">    this.setID( ID );</span><br><span class="line">    this.label = Label;</span><br><span class="line">&#125;;</span><br><span class="line">XYZ.outputTaskDetails = function() &#123; </span><br><span class="line">    this.outputID();</span><br><span class="line">    console.log( this.label );</span><br><span class="line">&#125;;</span><br><span class="line">// ABC = Object.create( Task ); </span><br><span class="line">// ABC ... = ...</span><br></pre></td></tr></table></figure></p>
+<h3 id="比较思维模型"><a href="#比较思维模型" class="headerlink" title="比较思维模型"></a>比较思维模型</h3><p>下面是典型的(“原型”)面向对象风格:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function Foo(who) &#123; </span><br><span class="line">    this.me = who;</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype.identify = function() &#123;</span><br><span class="line">    return &quot;I am &quot; + this.me; </span><br><span class="line">&#125;;</span><br><span class="line">function Bar(who) &#123; </span><br><span class="line">    Foo.call( this, who );</span><br><span class="line">&#125;</span><br><span class="line">Bar.prototype = Object.create( Foo.prototype );</span><br><span class="line">Bar.prototype.speak = function() &#123;</span><br><span class="line">    alert( &quot;Hello, &quot; + this.identify() + &quot;.&quot; );</span><br><span class="line">&#125;;</span><br><span class="line">var b1 = new Bar( &quot;b1&quot; );</span><br><span class="line">var b2 = new Bar( &quot;b2&quot; ); </span><br><span class="line">b1.speak();</span><br><span class="line">b2.speak();</span><br></pre></td></tr></table></figure></p>
+<p>实体以及实体间的思维模型如下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/class_entrust/class_style.jpg" alt="面向对象" title="">
+                </div>
+                <div class="image-caption">面向对象</div>
+            </figure></p>
+<p>下面使用对象关联(委托)风格来编写功能完全相同的代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Foo = &#123;</span><br><span class="line">    init: function(who) &#123;</span><br><span class="line">    this.me = who; </span><br><span class="line">&#125;,</span><br><span class="line">    identify: function() &#123;</span><br><span class="line">        return &quot;I am &quot; + this.me;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;;</span><br><span class="line">Bar = Object.create( Foo );</span><br><span class="line">Bar.speak = function() &#123;</span><br><span class="line">    alert( &quot;Hello, &quot; + this.identify() + &quot;.&quot; );</span><br><span class="line">&#125;;</span><br><span class="line">var b1 = Object.create( Bar );</span><br><span class="line">b1.init( &quot;b1&quot; );</span><br><span class="line">var b2 = Object.create( Bar );</span><br><span class="line">b2.init( &quot;b2&quot; );</span><br><span class="line">b1.speak();</span><br><span class="line">b2.speak();</span><br></pre></td></tr></table></figure></p>
+<p>对象关联风格代码的思维模型如下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/class_entrust/wt_style.jpg" alt="委托" title="">
+                </div>
+                <div class="image-caption">委托</div>
+            </figure></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a href="https://book.douban.com/subject/26351021/" target="_blank" rel="noopener">你不知道的js</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-27T09:07:35.222Z" itemprop="dateUpdated">2018-08-27 17:07:35</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/assets/img/a.jpg" alt="冯观钦">
+            冯观钦
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/27/js/js-class-entrust/&title=《我不知道的js-类和委托》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/27/js/js-class-entrust/&title=《我不知道的js-类和委托》 — Dykily Blog&source=web" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/27/js/js-class-entrust/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我不知道的js-类和委托》 — Dykily Blog&url=/2018/08/27/js/js-class-entrust/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2018/08/27/js/js-class-entrust/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/21/js/js-obj/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">我不知道是js-对象</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>冯观钦 &copy; 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2018/08/27/js/js-class-entrust/&title=《我不知道的js-类和委托》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2018/08/27/js/js-class-entrust/&title=《我不知道的js-类和委托》 — Dykily Blog&source=web" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/27/js/js-class-entrust/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我不知道的js-类和委托》 — Dykily Blog&url=/2018/08/27/js/js-class-entrust/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2018/08/27/js/js-class-entrust/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=/2018/08/27/js/js-class-entrust/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -27,10 +27,12 @@
 <meta property="og:site_name" content="Dykily Blog">
 <meta property="og:description" content="对象对象可以通过两种形式定义:声明(文字)形式和构造形式。对象的文字语法大概是这样:123var myObj = &amp;#123;     key: &amp;quot;aaa&amp;apos;&amp;#125;; 构造形式大概是这样:12var myObj = new Object(); myObj.key = &amp;quot;aaa&amp;quot;; 基本类型• string• number• boolean• null•">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-22T12:09:20.883Z">
+<meta property="og:image" content="/assets/img/article/class_entrust/proto.png">
+<meta property="og:updated_time" content="2018-08-27T09:05:31.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我不知道是js-对象">
 <meta name="twitter:description" content="对象对象可以通过两种形式定义:声明(文字)形式和构造形式。对象的文字语法大概是这样:123var myObj = &amp;#123;     key: &amp;quot;aaa&amp;apos;&amp;#125;; 构造形式大概是这样:12var myObj = new Object(); myObj.key = &amp;quot;aaa&amp;quot;; 基本类型• string• number• boolean• null•">
+<meta name="twitter:image" content="/assets/img/article/class_entrust/proto.png">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -161,7 +163,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本类型"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">基本类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内置对象"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">内置对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#操作对象的一些方法"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">操作对象的一些方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-assign"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">Object.assign()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-getOwnPropertyDescriptor"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">Object.getOwnPropertyDescriptor()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-defineProperty"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">Object.defineProperty()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-preventExtensions"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">Object.preventExtensions()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-seal"><span class="post-toc-number">1.3.5.</span> <span class="post-toc-text">Object.seal()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-freeze"><span class="post-toc-number">1.3.6.</span> <span class="post-toc-text">Object.freeze()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#hasOwnProperty-和-in"><span class="post-toc-number">1.3.7.</span> <span class="post-toc-text">hasOwnProperty() 和 in</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#propertyIsEnumerable-NaN"><span class="post-toc-number">1.3.8.</span> <span class="post-toc-text">propertyIsEnumerable()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-keys"><span class="post-toc-number">1.3.9.</span> <span class="post-toc-text">Object.keys()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-getOwnPropertyNames"><span class="post-toc-number">1.3.10.</span> <span class="post-toc-text">Object.getOwnPropertyNames()</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Put"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">[[Put]]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Getter和Setter"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">Getter和Setter</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">2.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本类型"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">基本类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内置对象"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">内置对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#操作对象的一些方法"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">操作对象的一些方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-assign"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">Object.assign()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-getOwnPropertyDescriptor"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">Object.getOwnPropertyDescriptor()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-defineProperty"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">Object.defineProperty()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-preventExtensions"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">Object.preventExtensions()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-seal"><span class="post-toc-number">1.3.5.</span> <span class="post-toc-text">Object.seal()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-freeze"><span class="post-toc-number">1.3.6.</span> <span class="post-toc-text">Object.freeze()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#hasOwnProperty-和-in"><span class="post-toc-number">1.3.7.</span> <span class="post-toc-text">hasOwnProperty() 和 in</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#propertyIsEnumerable-NaN"><span class="post-toc-number">1.3.8.</span> <span class="post-toc-text">propertyIsEnumerable()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-keys"><span class="post-toc-number">1.3.9.</span> <span class="post-toc-text">Object.keys()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-getOwnPropertyNames"><span class="post-toc-number">1.3.10.</span> <span class="post-toc-text">Object.getOwnPropertyNames()</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Put"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">[[Put]]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Getter和Setter"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">Getter和Setter</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Prototype"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">[[Prototype]]</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#属性设置和屏蔽"><span class="post-toc-number">1.6.1.</span> <span class="post-toc-text">属性设置和屏蔽</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对象和类之间原型链"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">对象和类之间原型链</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">2.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
         </nav>
     </aside>
     
@@ -204,7 +206,20 @@
 <li>如果都不是，将该值设置为属性的值。</li>
 </ol>
 <h3 id="Getter和Setter"><a href="#Getter和Setter" class="headerlink" title="Getter和Setter"></a>Getter和Setter</h3><p>getter 是一个隐藏函数，会在获取属性值时调用。setter 也是一个隐藏 函数，会在设置属性值时调用。<br>给对象的一个属性定义 getter、setter 或者两者都有时，这个属性会被定义为“访问描述 符”(和“数据描述符”相对)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var myObject = &#123;</span><br><span class="line">// 给 a 定义一个 getter </span><br><span class="line">get a() &#123;</span><br><span class="line">    return this._a_; </span><br><span class="line">&#125;,</span><br><span class="line">// 给 a 定义一个 setter </span><br><span class="line">set a(val) &#123;</span><br><span class="line">    this._a_ = 2; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Object.defineProperty( </span><br><span class="line">    myObject, // 目标对象 </span><br><span class="line">    &quot;b&quot;, // 属性名</span><br><span class="line">    &#123;   // 描述符</span><br><span class="line">        // 给 b 设置一个 getter</span><br><span class="line">        get: function()&#123; return 2 &#125;,</span><br><span class="line">        // 确保 b 会出现在对象的属性列表中</span><br><span class="line">        enumerable: true</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>continuing,coming soon</p>
+<h3 id="Prototype"><a href="#Prototype" class="headerlink" title="[[Prototype]]"></a>[[Prototype]]</h3><p>JavaScript 中的对象有一个特殊的 <code>[[Prototype]]</code> 内置属性，其实就是对于其他对象的引用。几乎所有的对象在创建时 <code>[[Prototype]]</code> 属性都会被赋予一个非空的值(对象的 <code>[[Prototype]]</code> 链接可以为空)。<br><code>[[Prototype]]</code> 引用有什么用呢？当你试图引用对象的属性时会触发，<code>[[Get]</code>] 操作，检查对象本身是 否有这个属性，如果有的话就使用它。如果没有，就需要使用对象的<code>[[Prototype]]</code>链</p>
+<h4 id="属性设置和屏蔽"><a href="#属性设置和屏蔽" class="headerlink" title="属性设置和屏蔽"></a>属性设置和屏蔽</h4><p>分析<code>myObject.foo = &quot;bar&quot;;</code>会有怎样的过程，<br>foo不在<code>myObject</code>中而是存在于原型链上层时 <code>myObject.foo = &quot;bar&quot;</code> 会出现的三种情况。</p>
+<ol>
+<li>如果在<code>[[Prototype]]</code>链上层存在名为foo的普通数据访问属性并且<code>没有被标记为只读</code>(writable:false)，那就会直接在 <code>myObject</code> 中添加一个名为 foo 的新 属性，它是屏蔽属性。</li>
+<li>如果在<code>[[Prototype]]</code>链上层存在foo，但是它被<code>标记为只读</code>(writable:false)，那么 无法修改已有属性或者在 <code>myObject</code> 上创建屏蔽属性。如果运行在严格模式下，代码会 抛出一个错误。否则，这条赋值语句会被忽略。总之，不会发生屏蔽。</li>
+<li>如果在<code>[[Prototype]]</code>链上层存在<code>foo</code>并且它是一个<code>setter</code>，那就一定会 调用这个<code>setter</code>。<code>foo</code>不会被添加到(或者说屏蔽于)<code>myObject</code>，也不会重新定义<code>foo</code>这个 <code>setter</code>。</li>
+</ol>
+<h3 id="对象和类之间原型链"><a href="#对象和类之间原型链" class="headerlink" title="对象和类之间原型链"></a>对象和类之间原型链</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/class_entrust/proto.png" alt="prototype" title="">
+                </div>
+                <div class="image-caption">prototype</div>
+            </figure>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://book.douban.com/subject/26351021/" target="_blank" rel="noopener">你不知道的js</a></p>
 
         </div>
@@ -213,7 +228,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-08-22T12:09:20.883Z" itemprop="dateUpdated">2018-08-22 20:09:20</time>
+    最后更新时间：<time datetime="2018-08-27T09:05:31.010Z" itemprop="dateUpdated">2018-08-27 17:05:31</time>
 </span><br>
 
 
@@ -285,7 +300,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/08/27/js/js-class-entrust/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">我不知道的js-类和委托</h4>
+      </a>
+    </div>
   
 
   
