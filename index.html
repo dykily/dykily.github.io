@@ -121,7 +121,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -155,6 +155,46 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-js/some-test-of-js"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-09-02 10:19:56" datetime="2018-09-02T02:19:56.000Z"  itemprop="datePublished">2018-09-02</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/09/02/js/some-test-of-js/">几道js题目</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        请问变量a会被GC回收么，为什么呢?1234567function test()&#123;    var a = &quot;testout&quot;;     return function()&#123;        eval(&quot;&quot;);     &#125;&#125; test()();
+不会由于eval会产生欺骗词法作用域，因为eval可以在当前作用域声明变...
+    
+
+        <a href="/2018/09/02/js/some-test-of-js/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-js/js-class-entrust"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -185,7 +225,7 @@
     
 
         <a href="/2018/08/27/js/js-class-entrust/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -226,7 +266,7 @@
     
 
         <a href="/2018/08/21/js/js-obj/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -267,7 +307,7 @@
     
 
         <a href="/2018/08/17/js/js-closure/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -316,7 +356,7 @@
     
 
         <a href="/2018/08/16/js/fn-scope/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -364,7 +404,7 @@ this绑定规则默认绑定首先要介绍的是最常用的函数调用类型:
     
 
         <a href="/2018/08/15/js/js-this/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -414,7 +454,7 @@ this绑定规则默认绑定首先要介绍的是最常用的函数调用类型:
     
 
         <a href="/2018/08/13/js/js-scope/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -464,7 +504,7 @@ transform-origin 属性允许您更改转换元素的位置。2D转换元素可�
     
 
         <a href="/2018/08/11/css/css3d/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -512,7 +552,7 @@ JSONP说起jsonp，可能大家都知道是...
     
 
         <a href="/2018/08/08/html/htmlknow/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -559,57 +599,7 @@ JSONP说起jsonp，可能大家都知道是...
     
 
         <a href="/2018/08/06/css/css-note1/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-css/css-note"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-08-05 18:16:24" datetime="2018-08-05T10:16:24.000Z"  itemprop="datePublished">2018-08-05</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/css/">css</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/08/05/css/css-note/">css笔记 -- 对象、分层</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        CSS 对象CSS 对象概述OO CSS将页面可重用元素抽象成一个类，用class描述，而与其对应的html可看成此类的实例
-OO CSS的作用和注意事项1.不要直接定义子节点，应把共性声明放到父类。
-12.mod .inner&#123;……&#125;       // good 抽象共性.inner&#123;……&#125;            // bad
-2.结构和皮肤相分离。...
-    
-
-        <a href="/2018/08/05/css/css-note/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -641,7 +631,7 @@ OO CSS的作用和注意事项1.不要直接定义子节点，应把共性声明
 
         <p>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
