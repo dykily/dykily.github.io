@@ -29,7 +29,10 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="/assets/img/article/http/req0.png">
 <meta property="og:image" content="/assets/img/article/http/req1.png">
-<meta property="og:updated_time" content="2018-12-13T12:06:54.620Z">
+<meta property="og:image" content="/assets/img/article/http/cache0.png">
+<meta property="og:image" content="/assets/img/article/http/cache1.png">
+<meta property="og:image" content="/assets/img/article/http/cache2.png">
+<meta property="og:updated_time" content="2018-12-14T07:15:47.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http-缓存策略">
 <meta name="twitter:description" content="浏览器缓存机制-浏览器第一次请求                                                                                                           浏览器缓存机制-浏览器再次请求">
@@ -125,7 +128,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -164,7 +167,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#浏览器缓存机制-浏览器第一次请求"><span class="post-toc-number">1.</span> <span class="post-toc-text">浏览器缓存机制-浏览器第一次请求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#浏览器缓存机制-浏览器再次请求"><span class="post-toc-number">2.</span> <span class="post-toc-text">浏览器缓存机制-浏览器再次请求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Etag-If-None-Match策略"><span class="post-toc-number">3.</span> <span class="post-toc-text">Etag/If-None-Match策略</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Etag"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Etag</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#If-None-Match"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">If-None-Match</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Last-Modified-If-Modified-Since策略"><span class="post-toc-number">4.</span> <span class="post-toc-text">Last-Modified/If-Modified-Since策略</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Last-Modified"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">Last-Modified:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#If-Modified-Since"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">If-Modified-Since</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#demo"><span class="post-toc-number">5.</span> <span class="post-toc-text">demo</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#浏览器缓存机制-浏览器第一次请求"><span class="post-toc-number">1.</span> <span class="post-toc-text">浏览器缓存机制-浏览器第一次请求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#浏览器缓存机制-浏览器再次请求"><span class="post-toc-number">2.</span> <span class="post-toc-text">浏览器缓存机制-浏览器再次请求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Etag-If-None-Match策略"><span class="post-toc-number">3.</span> <span class="post-toc-text">Etag/If-None-Match策略</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Etag"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Etag</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#If-None-Match"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">If-None-Match</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Last-Modified-If-Modified-Since策略"><span class="post-toc-number">4.</span> <span class="post-toc-text">Last-Modified/If-Modified-Since策略</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Last-Modified"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">Last-Modified:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#If-Modified-Since"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">If-Modified-Since</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#demo"><span class="post-toc-number">5.</span> <span class="post-toc-text">demo</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他缓存方案"><span class="post-toc-number">6.</span> <span class="post-toc-text">其他缓存方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Mainifest"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">Mainifest</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#localStorage"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">localStorage</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#PWA"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">PWA</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -210,7 +213,32 @@ web服务器收到请求后发现有头If-Modified- Since 则与被请求资源�
 若最后修改时间较新，说明资源又被改动过，则响应整片资源内容(写在响应消息包体内)，
 HTTP 200;若最后修改时间较旧，说明资源无新修改，则响应HTTP 304 (无需包体，节省浏览)，
 告知浏览器继续使用所保存的cache。
-</code></pre><h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><pre><code>continue
+</code></pre><h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/http/cache0.png" alt="图1" title="">
+                </div>
+                <div class="image-caption">图1</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/http/cache1.png" alt="图2" title="">
+                </div>
+                <div class="image-caption">图2</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/assets/img/article/http/cache2.png" alt="图3" title="">
+                </div>
+                <div class="image-caption">图3</div>
+            </figure>
+<h3 id="其他缓存方案"><a href="#其他缓存方案" class="headerlink" title="其他缓存方案"></a>其他缓存方案</h3><h4 id="Mainifest"><a href="#Mainifest" class="headerlink" title="Mainifest"></a>Mainifest</h4><h4 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h4><h4 id="PWA"><a href="#PWA" class="headerlink" title="PWA"></a>PWA</h4><pre><code>PWA全称Progressive Web App，即渐进式WEB应用。
+用Service Worker 来实现PWA的安装和离线等功能。
+Service Worker 是 Chrome 团队提出和力推的一个 WEB API，
+用于给 web 应用提供高级的可持续的后台处理能力。
+Service Workers 就像介于服务器和网页之间的拦截器，能够拦截进出的HTTP请求。
 </code></pre>
         </div>
 
@@ -218,7 +246,7 @@ HTTP 200;若最后修改时间较旧，说明资源无新修改，则响应HTTP 
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-12-13T12:06:54.620Z" itemprop="dateUpdated">2018-12-13 20:06:54</time>
+    Last updated: <time datetime="2018-12-14T07:15:47.941Z" itemprop="dateUpdated">2018-12-14 15:15:47</time>
 </span><br>
 
 
@@ -332,7 +360,7 @@ HTTP 200;若最后修改时间较旧，说明资源无新修改，则响应HTTP 
 
         <p>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
