@@ -139,7 +139,7 @@
 
     <div class="container fade-scale">
         <h1 class="title">分类</h1>
-        <h5 class="subtitle">
+        <h5 class="subtitle" id="hitokoto">
             
         </h5>
     </div>
@@ -459,7 +459,7 @@
                 <div class="waterfall-item">
   <article class="article-card archive-article">
     <div class="post-meta">
-      <time class="post-time" title="2018-08-17 09:05:22" datetime="2018-08-17T01:05:22.000Z"  itemprop="datePublished">2018-08-17</time>
+      <time class="post-time" title="2018-10-12 14:30:21" datetime="2018-10-12T06:30:21.000Z"  itemprop="datePublished">2018-10-12</time>
 
       
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/js/">js</a></li></ul>
@@ -472,7 +472,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/08/17/js/js-closure/">我不知道的js-闭包</a>
+      <a class="post-title-link" href="/2018/10/12/js/jq-for-simple/">JQuery的简单实现</a>
     </h3>
   
 
@@ -492,7 +492,7 @@
                 <div class="waterfall-item">
   <article class="article-card archive-article">
     <div class="post-meta">
-      <time class="post-time" title="2018-10-12 14:30:21" datetime="2018-10-12T06:30:21.000Z"  itemprop="datePublished">2018-10-12</time>
+      <time class="post-time" title="2018-08-17 09:05:22" datetime="2018-08-17T01:05:22.000Z"  itemprop="datePublished">2018-08-17</time>
 
       
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/js/">js</a></li></ul>
@@ -505,7 +505,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/10/12/js/jq-for-simple/">JQuery的简单实现</a>
+      <a class="post-title-link" href="/2018/08/17/js/js-closure/">我不知道的js-闭包</a>
     </h3>
   
 
@@ -651,6 +651,19 @@
             </span>
         </p>
     </div>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'https://v1.hitokoto.cn');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                var data = JSON.parse(xhr.responseText);
+                var hitokoto = document.getElementById("hitokoto");
+                hitokoto.innerHTML = data.hitokoto + "<br/> --  " + data.from;
+            }
+        }
+        xhr.send();
+    </script>
 </footer>
 
     </main>

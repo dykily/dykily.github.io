@@ -1,14 +1,6 @@
 (function (w, d) {
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('get', 'https://v1.hitokoto.cn');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            var data = JSON.parse(xhr.responseText);
-            $(".subtitle").innerHTML = data.hitokoto + "<br/> --  " + data.from;
-        }
-    }
-    xhr.send();
+    
     
     var body = d.body,
         $ = d.querySelector.bind(d),

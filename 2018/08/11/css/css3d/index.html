@@ -142,7 +142,7 @@
 
     <div class="container fade-scale">
         <h1 class="title">css3d--淘宝造物节demo</h1>
-        <h5 class="subtitle">
+        <h5 class="subtitle" id="hitokoto">
             
                 <time datetime="2018-08-11T10:39:19.000Z" itemprop="datePublished" class="page-time">
   2018-08-11
@@ -357,6 +357,19 @@
             </span>
         </p>
     </div>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'https://v1.hitokoto.cn');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                var data = JSON.parse(xhr.responseText);
+                var hitokoto = document.getElementById("hitokoto");
+                hitokoto.innerHTML = data.hitokoto + "<br/> --  " + data.from;
+            }
+        }
+        xhr.send();
+    </script>
 </footer>
 
     </main>

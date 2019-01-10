@@ -140,7 +140,7 @@
 
     <div class="container fade-scale">
         <h1 class="title">JQuery的简单实现</h1>
-        <h5 class="subtitle">
+        <h5 class="subtitle" id="hitokoto">
             
                 <time datetime="2018-10-12T06:30:21.000Z" itemprop="datePublished" class="page-time">
   2018-10-12
@@ -320,6 +320,19 @@
             </span>
         </p>
     </div>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'https://v1.hitokoto.cn');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                var data = JSON.parse(xhr.responseText);
+                var hitokoto = document.getElementById("hitokoto");
+                hitokoto.innerHTML = data.hitokoto + "<br/> --  " + data.from;
+            }
+        }
+        xhr.send();
+    </script>
 </footer>
 
     </main>

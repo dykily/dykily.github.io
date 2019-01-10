@@ -142,7 +142,7 @@
 
     <div class="container fade-scale">
         <h1 class="title">理解JavaScript 中的执行上下文和执行栈(转)</h1>
-        <h5 class="subtitle">
+        <h5 class="subtitle" id="hitokoto">
             
                 <time datetime="2018-12-17T11:01:38.000Z" itemprop="datePublished" class="page-time">
   2018-12-17
@@ -365,6 +365,19 @@
             </span>
         </p>
     </div>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'https://v1.hitokoto.cn');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                var data = JSON.parse(xhr.responseText);
+                var hitokoto = document.getElementById("hitokoto");
+                hitokoto.innerHTML = data.hitokoto + "<br/> --  " + data.from;
+            }
+        }
+        xhr.send();
+    </script>
 </footer>
 
     </main>

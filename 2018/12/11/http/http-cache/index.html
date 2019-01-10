@@ -145,7 +145,7 @@
 
     <div class="container fade-scale">
         <h1 class="title">http-缓存策略</h1>
-        <h5 class="subtitle">
+        <h5 class="subtitle" id="hitokoto">
             
                 <time datetime="2018-12-11T01:35:14.000Z" itemprop="datePublished" class="page-time">
   2018-12-11
@@ -378,6 +378,19 @@ Service Workers 就像介于服务器和网页之间的拦截器，能够拦截�
             </span>
         </p>
     </div>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'https://v1.hitokoto.cn');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                var data = JSON.parse(xhr.responseText);
+                var hitokoto = document.getElementById("hitokoto");
+                hitokoto.innerHTML = data.hitokoto + "<br/> --  " + data.from;
+            }
+        }
+        xhr.send();
+    </script>
 </footer>
 
     </main>

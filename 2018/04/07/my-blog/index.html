@@ -152,7 +152,7 @@
 
     <div class="container fade-scale">
         <h1 class="title">使用vue构建自动建站</h1>
-        <h5 class="subtitle">
+        <h5 class="subtitle" id="hitokoto">
             
                 <time datetime="2018-04-07T12:14:46.000Z" itemprop="datePublished" class="page-time">
   2018-04-07
@@ -466,6 +466,19 @@
             </span>
         </p>
     </div>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'https://v1.hitokoto.cn');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                var data = JSON.parse(xhr.responseText);
+                var hitokoto = document.getElementById("hitokoto");
+                hitokoto.innerHTML = data.hitokoto + "<br/> --  " + data.from;
+            }
+        }
+        xhr.send();
+    </script>
 </footer>
 
     </main>
