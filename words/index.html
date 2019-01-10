@@ -24,7 +24,7 @@
             flex-direction: column;
             height: 0;
             color: #fff;
-            padding: 25px 20px;
+            padding: 0 20px;
             transition: height 2s;
             -moz-transition: height 2s; /* Firefox 4 */
             -webkit-transition: height 2s; /* Safari 和 Chrome */
@@ -45,7 +45,7 @@
         <div class="sentence" id="sentence">总有一句话，直击你的心</div>
         <div class="from" id="from">总有一句话，直击你的心</div>
     </div>
-    <div class="content" id="content2" style="height: auto;">
+    <div class="content" id="content2" style="height: auto;visibility: hidden;position: absolute;">
 
         <div class="sentence"  id="sentence2">总有一句话，直击你的心</div>
         <div class="from" id="from2">总有一句话，直击你的心</div>
@@ -73,7 +73,7 @@
                 console.log(cnt2.offsetHeight);
                 
                 setTimeout(function(){
-                    cnt.style.height = cnt2.offsetHeight + "px";
+                    cnt.style.height = (50 + cnt2.offsetHeight) + "px";
                 },200)
             }
         }
