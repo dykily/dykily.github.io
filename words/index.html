@@ -91,6 +91,7 @@
         }else{
             deg = 0;
             clearInterval(timer);
+            timer = null;
         }
         
     };
@@ -106,7 +107,6 @@
                 from.innerHTML = "--" + data.from
                 sentence2.innerHTML = data.hitokoto;
                 from2.innerHTML = "--" + data.from;
-                console.log(cnt2.offsetHeight);
                 
                 setTimeout(function(){
                     cnt.style.height = (50 + cnt2.offsetHeight) + "px";
@@ -118,7 +118,8 @@
     }
     getWords();
     refreshWords.addEventListener("click", function(){
-        if(isLoading) return;
+        if(isLoading || null !=timer) return;
+        
         cnt.style.height = 0;
         isLoading = true;
         timer = setInterval(fn,12);
