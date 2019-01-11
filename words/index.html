@@ -13,6 +13,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+            
+            box-sizing: border-box;
+        }
+        body{
+            padding: 0 5px;
         }
         .content{
             border-bottom: 1px solid #fff;
@@ -25,15 +31,23 @@
             height: 0;
             color: #fff;
             padding: 0 20px;
-            transition: height 2s;
-            -moz-transition: height 2s; /* Firefox 4 */
-            -webkit-transition: height 2s; /* Safari 和 Chrome */
-            -o-transition: height 2s; /* Opera */
+            transition: height 1s;
+            -moz-transition: height 1s; /* Firefox 4 */
+            -webkit-transition: height 1s; /* Safari 和 Chrome */
+            -o-transition: height 1s; /* Opera */
             overflow: hidden;
+            margin-bottom: 20px;
         }
 
         .sentence{
             margin-bottom: 15px;
+        }
+
+        .refreshWords{
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            
         }
 
 
@@ -45,10 +59,12 @@
         <div class="sentence" id="sentence">总有一句话，直击你的心</div>
         <div class="from" id="from">总有一句话，直击你的心</div>
     </div>
+    <img class="refreshWords" id="refreshWords" src="../assets/img/refresh_words.png" alt="">
     <div class="content" id="content2" style="height: auto;visibility: hidden;position: absolute;">
 
         <div class="sentence"  id="sentence2">总有一句话，直击你的心</div>
         <div class="from" id="from2">总有一句话，直击你的心</div>
+        
     </div>
 </body>
 
@@ -56,11 +72,31 @@
     var cnt = document.querySelector("#content");
     var sentence = document.querySelector("#sentence");
     var from = document.querySelector("#from");
+    var refreshWords = document.querySelector("#refreshWords");
     var cnt2 = document.querySelector("#content2")
     var sentence2 = document.querySelector("#sentence2");
     var from2 = document.querySelector("#from2");
     
     var xhr = new XMLHttpRequest();
+    var deg = 0;
+    var isLoading = true;
+    var fn = function(){
+        if(isLoading){
+            deg+= 6;
+            refreshWords.style.transform = "rotate("+deg+"deg)";
+            
+        }else if(0 != deg%360){
+            deg+= 6;
+            refreshWords.style.transform = "rotate("+deg+"deg)";
+        }else{
+            deg = 0;
+            clearInterval(timer);
+        }
+        
+    };
+    var timer = setInterval(fn,12);
+    function getWords(){
+        refreshWords.style.animation = "load 1s linear infinite";
         xhr.open('get', 'https://v1.hitokoto.cn');
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
@@ -74,9 +110,23 @@
                 
                 setTimeout(function(){
                     cnt.style.height = (50 + cnt2.offsetHeight) + "px";
+                    isLoading = false;
                 },200)
             }
         }
-    xhr.send();
+        xhr.send();
+    }
+    getWords();
+    refreshWords.addEventListener("click", function(){
+        if(isLoading) return;
+        cnt.style.height = 0;
+        isLoading = true;
+        timer = setInterval(fn,12);
+        setTimeout(function(){
+            getWords();
+        },1000)
+        
+    });
+        
 </script>
 </html>
