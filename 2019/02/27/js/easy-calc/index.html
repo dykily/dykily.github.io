@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>js小数计算的问题，为什么0.1+0.2 != 0.3 | Dykily Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js">
+    <meta name="description" content="简介因为 JS 采用 IEEE 754 双精度版本（64位），并且只要采用 IEEE 754 的语言都有该问题。还有学过计算机组成原理这门课的同学应该知道，我们计算机的数据都是由0、1组成的，js的数字最终在计算机也是又0、1组成。我们先说一下小数怎么转换成二进制。123456// 0.125  十进制 -&amp;gt; 二进制0.125 * 2 = 0.25  取00.25 * 2 = 0.5">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js小数计算的问题，为什么0.1+0.2 != 0.3">
+<meta property="og:url" content="/2019/02/27/js/easy-calc/index.html">
+<meta property="og:site_name" content="Dykily Blog">
+<meta property="og:description" content="简介因为 JS 采用 IEEE 754 双精度版本（64位），并且只要采用 IEEE 754 的语言都有该问题。还有学过计算机组成原理这门课的同学应该知道，我们计算机的数据都是由0、1组成的，js的数字最终在计算机也是又0、1组成。我们先说一下小数怎么转换成二进制。123456// 0.125  十进制 -&amp;gt; 二进制0.125 * 2 = 0.25  取00.25 * 2 = 0.5">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-26T19:20:40.485Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js小数计算的问题，为什么0.1+0.2 != 0.3">
+<meta name="twitter:description" content="简介因为 JS 采用 IEEE 754 双精度版本（64位），并且只要采用 IEEE 754 的语言都有该问题。还有学过计算机组成原理这门课的同学应该知道，我们计算机的数据都是由0、1组成的，js的数字最终在计算机也是又0、1组成。我们先说一下小数怎么转换成二进制。123456// 0.125  十进制 -&amp;gt; 二进制0.125 * 2 = 0.25  取00.25 * 2 = 0.5">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/assets/img/a.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Cookie Feng</h5>
+          <a href="mailto:250684079@qq.com" title="250684079@qq.com" class="mail">250684079@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/dykily" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">js小数计算的问题，为什么0.1+0.2 != 0.3</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">js小数计算的问题，为什么0.1+0.2 != 0.3</h1>
+        <h5 class="subtitle" id="hitokoto">
+            
+                <time datetime="2019-02-26T19:19:14.000Z" itemprop="datePublished" class="page-time">
+  2019-02-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/js/">js</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小结"><span class="post-toc-number">2.</span> <span class="post-toc-text">小结</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-js/easy-calc"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">js小数计算的问题，为什么0.1+0.2 != 0.3</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-27 03:19:14" datetime="2019-02-26T19:19:14.000Z"  itemprop="datePublished">2019-02-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/js/">js</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>因为 JS 采用 IEEE 754 双精度版本（64位），并且只要采用 IEEE 754 的语言都有该问题。<br>还有学过计算机组成原理这门课的同学应该知道，我们计算机的数据都是由0、1组成的，js的数字最终在计算机也是又0、1组成。我们先说一下小数怎么转换成二进制。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 0.125  十进制 -&gt; 二进制</span><br><span class="line">0.125 * 2 = 0.25  取0</span><br><span class="line">0.25 * 2 = 0.5    取0</span><br><span class="line">0.5 * 2 = 1       取1</span><br><span class="line"></span><br><span class="line">// 0.001 (0.125 的二进制)</span><br></pre></td></tr></table></figure></p>
+<p>从上面我们可以知道通过小数部分不断乘2来判断取二进制位 0 还是 取1，以下是转换的步骤：</p>
+<ul>
+<li>1、把当前小数乘2，小于1走 <strong>步骤2</strong>，大于1 走 <strong>步骤3</strong>，等于1走 <strong>步骤4</strong>，</li>
+<li>2、如果小数部分乘2不超过1，<strong>二进制位则取0</strong>，回到 <strong>步骤1</strong></li>
+<li>3、如果乘2后超过1则取1并不用考虑小数点左边的数字保留小数点右边的数字，<strong>二进制位取1</strong> 回到 <strong>步骤1</strong></li>
+<li>4、如果小数乘2刚好等于1则结束转换，<strong>二进制位取1</strong></li>
+</ul>
+<p>如果上面还不清楚可以再下面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 0.1  十进制 -&gt; 二进制</span><br><span class="line">0.1 * 2 = 0.2  取0</span><br><span class="line">0.2 * 2 = 0.4  取0</span><br><span class="line">0.4 * 2 = 0.8  取0</span><br><span class="line">0.8 * 2 = 1.6  取1</span><br><span class="line">0.6 * 2 = 1.2  取1</span><br><span class="line">0.2 * 2 = 0.4  取0</span><br><span class="line">0.4 * 2 = 0.8  取0</span><br><span class="line">0.8 * 2 = 1.6  取1</span><br><span class="line">0.6 * 2 = 1.2  取1</span><br><span class="line">//0.000110011(0011)`   0.1二进制(0011)里面的数字表示循环</span><br></pre></td></tr></table></figure></p>
+<p>你会发现 0.1 转二级制会一直无线循环下去，根本算不出一个正确的二进制数。<br>所以我们得出 <code>0.1 =  0.000110011(0011)</code>，那么 0.2 的演算也基本如上所示，只需要去掉第一步乘法，所以得出 <code>0.2 = 0.00110011(0011)</code><br>回来继续说 IEEE 754 双精度。六十四位中符号位占一位，整数位占十一位，其余五十二位都为小数位。<br>因为 0.1 和 0.2 都是无限循环的二进制了，所以在小数位末尾处需要判断是否进位（就和十进制的四舍五入一样）<br>那么把这两个二进制加起来会得出<code>0.010011....0100</code> , 这个值算成十进制就是 <code>0.30000000000000004</code></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//下面可以用原生解决 0.1+0.2 的问题</span><br><span class="line">parseFloat((0.1 + 0.2).toFixed(10))</span><br></pre></td></tr></table></figure>
+<p>下面推荐一个小工具专门是用来处理js浮点数相加相减的问题的大家可以去看一下</p>
+<p><a href="https://github.com/dykily/easy-calc" target="_blank" rel="noopener">https://github.com/dykily/easy-calc</a></p>
+<p>大家觉得有用的话给个star呀</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-02-26T19:20:40.485Z" itemprop="dateUpdated">2019-02-27 03:20:40</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/assets/img/a.jpg" alt="Cookie Feng">
+            Cookie Feng
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2019/02/27/js/easy-calc/&title=《js小数计算的问题，为什么0.1+0.2 != 0.3》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2019/02/27/js/easy-calc/&title=《js小数计算的问题，为什么0.1+0.2 != 0.3》 — Dykily Blog&source=web" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2019/02/27/js/easy-calc/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js小数计算的问题，为什么0.1+0.2 != 0.3》 — Dykily Blog&url=/2019/02/27/js/easy-calc/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2019/02/27/js/easy-calc/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/18/http/cookies-identify/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">cookie之登录用户凭证</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Cookie Feng &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'https://v1.hitokoto.cn');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                var data = JSON.parse(xhr.responseText);
+                var hitokoto = document.getElementById("hitokoto");
+                hitokoto.innerHTML = data.hitokoto + "<br/> --  " + data.from;
+            }
+        }
+        xhr.send();
+    </script>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2019/02/27/js/easy-calc/&title=《js小数计算的问题，为什么0.1+0.2 != 0.3》 — Dykily Blog&pic=/assets/img/a.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2019/02/27/js/easy-calc/&title=《js小数计算的问题，为什么0.1+0.2 != 0.3》 — Dykily Blog&source=web" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2019/02/27/js/easy-calc/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js小数计算的问题，为什么0.1+0.2 != 0.3》 — Dykily Blog&url=/2019/02/27/js/easy-calc/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2019/02/27/js/easy-calc/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=/2019/02/27/js/easy-calc/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

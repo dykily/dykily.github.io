@@ -155,6 +155,53 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-js/easy-calc"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-02-27 03:19:14" datetime="2019-02-26T19:19:14.000Z"  itemprop="datePublished">2019-02-27</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/js/">js</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/27/js/easy-calc/">js小数计算的问题，为什么0.1+0.2 != 0.3</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        简介因为 JS 采用 IEEE 754 双精度版本（64位），并且只要采用 IEEE 754 的语言都有该问题。还有学过计算机组成原理这门课的同学应该知道，我们计算机的数据都是由0、1组成的，js的数字最终在计算机也是又0、1组成。我们先说一下小数怎么转换成二进制。123456// 0.125  十进制 -&gt; 二进制0.125 * 2 = 0.25  取00.25 * 2 = 0.5 ...
+    
+
+        <a href="/2019/02/27/js/easy-calc/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-http/cookies-identify"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -564,55 +611,6 @@ Eval 函数执行上下文： 指的是运行在 eval 函数中的代码，不�
     
 
         <a href="/2018/08/17/js/js-closure/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-js/fn-scope"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-08-16 09:06:23" datetime="2018-08-16T01:06:23.000Z"  itemprop="datePublished">2018-08-16</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/js/">js</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/08/16/js/fn-scope/">我不知道的js-函数作用域、块作用域、变量提升</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        函数作用域说明任意代码片段外部添加包装函数，可以将内部的变量和函数定义“隐藏”起来，外部作用域无法访问包装函数内部的任何内容。
-立即执行函数（IIFE）(function foo() {})(); 和 (function foo() {}()); 是最常见的IIFE，其实还有其方式的IIFE，比如可以用 ! ~ 等等这些运算符。
-立即执行函数传参可以向IIFE传递参数，如下123(funct...
-    
-
-        <a href="/2018/08/16/js/fn-scope/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
