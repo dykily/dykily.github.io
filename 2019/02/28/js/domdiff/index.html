@@ -28,12 +28,13 @@
 <meta property="og:site_name" content="Dykily Blog">
 <meta property="og:description" content="前言先介绍一个概念Virtual Dom，我猜大家或多或少都应该知道什么Virtual Dom吧，简单来说就是用js来模拟DOM中的结点。 Virtual Dom下面就是一个Virtual Dom的结构，包含了标签名，拥有的属性，孩子结点，render函数12345678910class Element &amp;#123;  constructor(tagName, attrs, children) &amp;">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/2/28/16934ad78742d106?w=391&h=227&f=jpeg&s=14970">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/2/28/169346447e7cceb1?w=2252&h=1330&f=png&s=114658">
-<meta property="og:updated_time" content="2019-02-28T14:35:10.757Z">
+<meta property="og:updated_time" content="2019-02-28T15:17:48.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Virtual Dom &amp;&amp; Diff原理，极简版">
 <meta name="twitter:description" content="前言先介绍一个概念Virtual Dom，我猜大家或多或少都应该知道什么Virtual Dom吧，简单来说就是用js来模拟DOM中的结点。 Virtual Dom下面就是一个Virtual Dom的结构，包含了标签名，拥有的属性，孩子结点，render函数12345678910class Element &amp;#123;  constructor(tagName, attrs, children) &amp;">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/2/28/169346447e7cceb1?w=2252&h=1330&f=png&s=114658">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/2/28/16934ad78742d106?w=391&h=227&f=jpeg&s=14970">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -193,7 +194,13 @@
 <p>以上就是Virtual Dom Tree如何被转换成真实Dom并添加到网页中的过程，再这个过程中我把render函数给省略，只是为了让你们先了解原理，具体实现可以以后再深究。我学一个东西的时候，习惯是先把整体原理弄清楚，再去深入学习相关的知识。</p>
 <h3 id="Diff-算法"><a href="#Diff-算法" class="headerlink" title="Diff 算法"></a>Diff 算法</h3><p>在介绍Diff算法之前，再次声明我只会列举Diff算法中会用到的函数，并串联它们之间的关系并不会给出具体实现的代码</p>
 <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>diff算法是进行虚拟节点Element的对比，并返回一个pathchs对象，用来存储两个节点不同的地方，最后用pathchs记录的消息去局部更新Dom。</p>
-<p>两个树如果完全比较的话需要时间复杂度为O(n^3)，如果对O(n^3)不太清楚的话建议去网上搜索资料。而在Diff算法中因为考虑效率的问题，只会对同层级元素比较，时间复杂度则为O(n)，说白了就是深度遍历，并比较同层级的节点。</p>
+<p>两个树如果完全比较的话需要时间复杂度为O(n^3)，如果对O(n^3)不太清楚的话建议去网上搜索资料。而在Diff算法中因为考虑效率的问题，只会对同层级元素比较，时间复杂度则为O(n)，说白了就是深度遍历，并比较同层级的节点。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2019/2/28/16934ad78742d106?w=391&h=227&f=jpeg&s=14970" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
 <h4 id="Diff只需下面两句代码"><a href="#Diff只需下面两句代码" class="headerlink" title="Diff只需下面两句代码"></a>Diff只需下面两句代码</h4><ul>
 <li>判断两棵Virtual Dom Tree 差异</li>
 <li>把差异更新到真实Dom中去<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let pathchs = diff(oldTree, newTree);//获取两棵Virtual Dom Tree 差异</span><br><span class="line">patch(ulDom, pathchs);//找到对应的真实dom，进行部分渲染</span><br></pre></td></tr></table></figure>
@@ -222,7 +229,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-02-28T14:35:10.757Z" itemprop="dateUpdated">2019-02-28 22:35:10</time>
+    Last updated: <time datetime="2019-02-28T15:17:48.124Z" itemprop="dateUpdated">2019-02-28 23:17:48</time>
 </span><br>
 
 
