@@ -20,20 +20,20 @@
     
     
     <meta name="keywords" content="vue">
-    <meta name="description" content="前言先介绍一个概念Virtual Dom，我猜大家或多或少都应该知道什么Virtual Dom吧，简单来说就是用js来模拟DOM中的结点。 Virtual Dom下面就是一个Virtual Dom的结构，包含了标签名，拥有的属性，孩子结点，render函数12345678910class Element &amp;#123;  constructor(tagName, attrs, children) &amp;">
+    <meta name="description" content="前言先介绍一个概念Virtual Dom，我猜大家或多或少都应该知道什么是Virtual Dom吧，简单来说就是用js来模拟DOM中的结点。 Virtual Dom下面就是一个Virtual Dom的结构，包含了标签名，拥有的属性，孩子结点，render函数12345678910class Element &amp;#123;  constructor(tagName, attrs, children)">
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Virtual Dom &amp;&amp; Diff原理，极简版">
 <meta property="og:url" content="/2019/02/28/js/domdiff/index.html">
 <meta property="og:site_name" content="Dykily Blog">
-<meta property="og:description" content="前言先介绍一个概念Virtual Dom，我猜大家或多或少都应该知道什么Virtual Dom吧，简单来说就是用js来模拟DOM中的结点。 Virtual Dom下面就是一个Virtual Dom的结构，包含了标签名，拥有的属性，孩子结点，render函数12345678910class Element &amp;#123;  constructor(tagName, attrs, children) &amp;">
+<meta property="og:description" content="前言先介绍一个概念Virtual Dom，我猜大家或多或少都应该知道什么是Virtual Dom吧，简单来说就是用js来模拟DOM中的结点。 Virtual Dom下面就是一个Virtual Dom的结构，包含了标签名，拥有的属性，孩子结点，render函数12345678910class Element &amp;#123;  constructor(tagName, attrs, children)">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/2/28/16934ad78742d106?w=391&h=227&f=jpeg&s=14970">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/2/28/169346447e7cceb1?w=2252&h=1330&f=png&s=114658">
-<meta property="og:updated_time" content="2019-02-28T15:17:48.124Z">
+<meta property="og:updated_time" content="2019-02-28T15:21:55.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Virtual Dom &amp;&amp; Diff原理，极简版">
-<meta name="twitter:description" content="前言先介绍一个概念Virtual Dom，我猜大家或多或少都应该知道什么Virtual Dom吧，简单来说就是用js来模拟DOM中的结点。 Virtual Dom下面就是一个Virtual Dom的结构，包含了标签名，拥有的属性，孩子结点，render函数12345678910class Element &amp;#123;  constructor(tagName, attrs, children) &amp;">
+<meta name="twitter:description" content="前言先介绍一个概念Virtual Dom，我猜大家或多或少都应该知道什么是Virtual Dom吧，简单来说就是用js来模拟DOM中的结点。 Virtual Dom下面就是一个Virtual Dom的结构，包含了标签名，拥有的属性，孩子结点，render函数12345678910class Element &amp;#123;  constructor(tagName, attrs, children)">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/2/28/16934ad78742d106?w=391&h=227&f=jpeg&s=14970">
     
     <link rel="shortcut icon" href="/favicon.ico">
@@ -188,7 +188,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>先介绍一个概念Virtual Dom，我猜大家或多或少都应该知道什么Virtual Dom吧，简单来说就是用js来模拟DOM中的结点。</p>
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>先介绍一个概念Virtual Dom，我猜大家或多或少都应该知道什么是Virtual Dom吧，简单来说就是用js来模拟DOM中的结点。</p>
 <h3 id="Virtual-Dom"><a href="#Virtual-Dom" class="headerlink" title="Virtual Dom"></a>Virtual Dom</h3><p>下面就是一个Virtual Dom的结构，包含了标签名，拥有的属性，孩子结点，render函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Element &#123;</span><br><span class="line">  constructor(tagName, attrs, children) &#123;</span><br><span class="line">    this.tagName  = tagName;</span><br><span class="line">    this.attrs    = attrs || &#123;&#125;;</span><br><span class="line">    this.children = children || [];</span><br><span class="line">  &#125;</span><br><span class="line">  render () &#123;</span><br><span class="line">    //这个函数是用来生成真实DOM的，最后会把return的结果添加到页面中去 </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="创建一棵个Virtual-Dom-Tree-amp-amp-渲染"><a href="#创建一棵个Virtual-Dom-Tree-amp-amp-渲染" class="headerlink" title="创建一棵个Virtual Dom Tree &amp;&amp;  渲染"></a>创建一棵个Virtual Dom Tree &amp;&amp;  渲染</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">&lt;ul id=&quot;list&quot;&gt;</span><br><span class="line">  &lt;li class=&quot;a&quot;&gt;txt_a&lt;/li&gt;</span><br><span class="line">  &lt;li class=&quot;a&quot;&gt;txt_b&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">**/</span><br><span class="line">//根据上面结构可以用一下方式创建一棵 Virtual Dom Tree</span><br><span class="line">let ul = Element(&apos;ul&apos;, &#123; id: &apos;list&apos; &#125;, [</span><br><span class="line">  Element(&apos;li&apos;, &#123; class: &apos;a&apos; &#125;, [&apos;txt_a&apos;]),</span><br><span class="line">  Element(&apos;li&apos;, &#123; class: &apos;b&apos; &#125;, [&apos;txt_b&apos;])</span><br><span class="line">]);//ul 就是一棵个Virtual Dom Tree</span><br><span class="line">let ulDom = ul.render();//生成真实Dom</span><br><span class="line">document.body.appendChild(ulDom);//添加到页面中</span><br></pre></td></tr></table></figure>
 <p>以上就是Virtual Dom Tree如何被转换成真实Dom并添加到网页中的过程，再这个过程中我把render函数给省略，只是为了让你们先了解原理，具体实现可以以后再深究。我学一个东西的时候，习惯是先把整体原理弄清楚，再去深入学习相关的知识。</p>
@@ -229,7 +229,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-02-28T15:17:48.124Z" itemprop="dateUpdated">2019-02-28 23:17:48</time>
+    Last updated: <time datetime="2019-02-28T15:21:55.111Z" itemprop="dateUpdated">2019-02-28 23:21:55</time>
 </span><br>
 
 
